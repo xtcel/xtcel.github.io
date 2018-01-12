@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      解决macOS Sierra软件崩溃 | XTCEL 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Jack Yong">
+    
+    
+
+    <meta name="description" content="不少用户安装macOS 10.12后，安装网上下载的破解软件，打开后竟然出现程序文件被损坏，要求删除应用的提示，看到这个提示大家本能的理解应该是网上下载的第三方程序出问题，文件被损坏，其实这是苹果阻止用户安装破解软件的一项策略，防止苹果盗版软件的盛行。  用户可能已经发现，在新版的”安全性与隐私”中已找不到”任何来源”选项，意思是用户只能从AppStore下载或者安装已认证的开发者的程序，从其他网">
+<meta name="keywords" content="Mac,崩溃,macOS10.12,破解软件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决macOS Sierra软件崩溃 | XTCEL">
+<meta property="og:url" content="http://xtcel.com/2016/10/17/解决macOS Sierra软件崩溃/index.html">
+<meta property="og:site_name" content="XTCEL">
+<meta property="og:description" content="不少用户安装macOS 10.12后，安装网上下载的破解软件，打开后竟然出现程序文件被损坏，要求删除应用的提示，看到这个提示大家本能的理解应该是网上下载的第三方程序出问题，文件被损坏，其实这是苹果阻止用户安装破解软件的一项策略，防止苹果盗版软件的盛行。  用户可能已经发现，在新版的”安全性与隐私”中已找不到”任何来源”选项，意思是用户只能从AppStore下载或者安装已认证的开发者的程序，从其他网">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://o88f31ee3.bkt.clouddn.com/image/blog/APP%E6%89%93%E4%B8%8D%E5%BC%80.png">
+<meta property="og:image" content="http://o88f31ee3.bkt.clouddn.com/image/blog/%E6%97%A0%E4%BB%BB%E4%BD%95%E6%9D%A5%E6%BA%90.png">
+<meta property="og:image" content="http://o88f31ee3.bkt.clouddn.com/image/blog/%E7%BB%88%E7%AB%AF.png">
+<meta property="og:image" content="http://o88f31ee3.bkt.clouddn.com/image/blog/%E7%BB%88%E7%AB%AF%E8%BE%93%E5%85%A52.png">
+<meta property="og:image" content="http://o88f31ee3.bkt.clouddn.com/image/blog/%E6%9C%89%E4%BB%BB%E4%BD%95%E6%9D%A5%E6%BA%90.png">
+<meta property="og:image" content="http://o88f31ee3.bkt.clouddn.com/image/blog/%E5%B7%B2%E6%89%93%E5%BC%80APP.png">
+<meta property="og:updated_time" content="2018-01-11T08:53:23.425Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解决macOS Sierra软件崩溃 | XTCEL">
+<meta name="twitter:description" content="不少用户安装macOS 10.12后，安装网上下载的破解软件，打开后竟然出现程序文件被损坏，要求删除应用的提示，看到这个提示大家本能的理解应该是网上下载的第三方程序出问题，文件被损坏，其实这是苹果阻止用户安装破解软件的一项策略，防止苹果盗版软件的盛行。  用户可能已经发现，在新版的”安全性与隐私”中已找不到”任何来源”选项，意思是用户只能从AppStore下载或者安装已认证的开发者的程序，从其他网">
+<meta name="twitter:image" content="http://o88f31ee3.bkt.clouddn.com/image/blog/APP%E6%89%93%E4%B8%8D%E5%BC%80.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/images/avatar.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for XTCEL"><img src="/images/avatar.png" width="80" alt="XTCEL logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">XTCEL</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          关注技术   热爱设计
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/xtcel" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">解决macOS Sierra软件崩溃</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-17" class="post-meta__date date">2016-10-17</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/Mac/">Mac</a>, <a class="tags-link" href="/tags/macOS10-12/">macOS10.12</a>, <a class="tags-link" href="/tags/崩溃/">崩溃</a>, <a class="tags-link" href="/tags/破解软件/">破解软件</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>不少用户安装macOS 10.12后，安装网上下载的破解软件，打开后竟然出现程序文件被损坏，要求删除应用的提示，看到这个提示大家本能的理解应该是网上下载的第三方程序出问题，文件被损坏，其实这是苹果阻止用户安装破解软件的一项策略，防止苹果盗版软件的盛行。</p>
+<p><img src="http://o88f31ee3.bkt.clouddn.com/image/blog/APP%E6%89%93%E4%B8%8D%E5%BC%80.png" alt="APP打不开"></p>
+<p>用户可能已经发现，在新版的”安全性与隐私”中已找不到”任何来源”选项，意思是用户只能从AppStore下载或者安装已认证的开发者的程序，从其他网站下载的程序大部分是已经被破解修改重新打包的APP，这些APP的开发者是不受认证的。那么怎么打开任何来源?接来下我就给大家详细讲解.非常简单!</p>
+<p><img src="http://o88f31ee3.bkt.clouddn.com/image/blog/%E6%97%A0%E4%BB%BB%E4%BD%95%E6%9D%A5%E6%BA%90.png" alt=""></p>
+<h4 id="打开终端"><a href="#打开终端" class="headerlink" title="打开终端"></a>打开终端</h4><p>打开终端,如下图:</p>
+<p><img src="http://o88f31ee3.bkt.clouddn.com/image/blog/%E7%BB%88%E7%AB%AF.png" alt=""></p>
+<h4 id="输出命令"><a href="#输出命令" class="headerlink" title="输出命令"></a>输出命令</h4><p>然后输入以下命令:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure></p>
+<p>如下图:<br><img src="http://o88f31ee3.bkt.clouddn.com/image/blog/%E7%BB%88%E7%AB%AF%E8%BE%93%E5%85%A52.png" alt=""></p>
+<p>输入后回车，sudo命令需要输入电脑的密码，将你的登录密码输入认证就可以了。</p>
+<h4 id="成功啦"><a href="#成功啦" class="headerlink" title="成功啦"></a>成功啦</h4><p>然后再重新打开“安全性与隐私”,已经出现并选中”任何来源”了。</p>
+<p><img src="http://o88f31ee3.bkt.clouddn.com/image/blog/%E6%9C%89%E4%BB%BB%E4%BD%95%E6%9D%A5%E6%BA%90.png" alt=""></p>
+<p>再次打开你的APP，已经不会再出现文件损坏的提示。</p>
+<p><img src="http://o88f31ee3.bkt.clouddn.com/image/blog/%E5%B7%B2%E6%89%93%E5%BC%80APP.png" alt=""></p>
+<p>APP正常运行，终于可以继续愉快的玩耍了。继续coding….</p>
+
+  </section>
+
+  
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'xtcel'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]}
+            });
+        });
+    </script>
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

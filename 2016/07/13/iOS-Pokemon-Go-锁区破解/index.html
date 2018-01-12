@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      iOS Pokemon Go 锁区破解 | XTCEL 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Jack Yong">
+    
+    
+
+    <meta name="description" content="废话不多说，直接上教程 需要材料：1.一台Mac2.一个付费iOS开发账户(99美刀)3.iOS App Signer软件和Pokemon Go安装包 创建Bundle Id1.首先需要去developer.apple.com,登录你的账户2.选中iOS App IDs，创建一个APP id,即创建一个Bundle Id,名称随意  创建证书1.创建Certificates证书2.创建新的描述文件">
+<meta name="keywords" content="破解,iOS,Pokemon Go,锁区">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS Pokemon Go 锁区破解 | XTCEL">
+<meta property="og:url" content="http://xtcel.com/2016/07/13/iOS-Pokemon-Go-锁区破解/index.html">
+<meta property="og:site_name" content="XTCEL">
+<meta property="og:description" content="废话不多说，直接上教程 需要材料：1.一台Mac2.一个付费iOS开发账户(99美刀)3.iOS App Signer软件和Pokemon Go安装包 创建Bundle Id1.首先需要去developer.apple.com,登录你的账户2.选中iOS App IDs，创建一个APP id,即创建一个Bundle Id,名称随意  创建证书1.创建Certificates证书2.创建新的描述文件">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/453533-887ef7c241de7e70.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/453533-94234a2ae5f2de56.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/453533-9b273a6946b6246f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/453533-51e9644b829911a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/453533-fc54bfc547148999.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/453533-66efc0f730c710b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/453533-3105fabc8ea82458.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-01-11T08:53:23.423Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS Pokemon Go 锁区破解 | XTCEL">
+<meta name="twitter:description" content="废话不多说，直接上教程 需要材料：1.一台Mac2.一个付费iOS开发账户(99美刀)3.iOS App Signer软件和Pokemon Go安装包 创建Bundle Id1.首先需要去developer.apple.com,登录你的账户2.选中iOS App IDs，创建一个APP id,即创建一个Bundle Id,名称随意  创建证书1.创建Certificates证书2.创建新的描述文件">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/453533-887ef7c241de7e70.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/images/avatar.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for XTCEL"><img src="/images/avatar.png" width="80" alt="XTCEL logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">XTCEL</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          关注技术   热爱设计
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/xtcel" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">iOS Pokemon Go 锁区破解</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-07-13" class="post-meta__date date">2016-07-13</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/Pokemon-Go/">Pokemon Go</a>, <a class="tags-link" href="/tags/iOS/">iOS</a>, <a class="tags-link" href="/tags/破解/">破解</a>, <a class="tags-link" href="/tags/锁区/">锁区</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>废话不多说，直接上教程</p>
+<h4 id="需要材料："><a href="#需要材料：" class="headerlink" title="需要材料："></a>需要材料：</h4><p>1.一台Mac<br>2.一个付费iOS开发账户(99美刀)<br>3.iOS App Signer软件和Pokemon Go安装包</p>
+<h4 id="创建Bundle-Id"><a href="#创建Bundle-Id" class="headerlink" title="创建Bundle Id"></a>创建Bundle Id</h4><p>1.首先需要去developer.apple.com,登录你的账户<br>2.选中iOS App IDs，创建一个APP id,即创建一个Bundle Id,名称随意</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/453533-887ef7c241de7e70.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="app ids.png"></p>
+<h4 id="创建证书"><a href="#创建证书" class="headerlink" title="创建证书"></a>创建证书</h4><p>1.创建Certificates证书<br><img src="http://upload-images.jianshu.io/upload_images/453533-94234a2ae5f2de56.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Certificates.png"><br>2.创建新的描述文件<br><img src="http://upload-images.jianshu.io/upload_images/453533-9b273a6946b6246f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Provisioning Profile.png"><br>创建的证书development或者distribution都可以，但是必须和描述文件一一对应。</p>
+<h4 id="使用iOS-App-Signer重签名APP"><a href="#使用iOS-App-Signer重签名APP" class="headerlink" title="使用iOS App Signer重签名APP"></a>使用iOS App Signer重签名APP</h4><p>1.下载虾神修改过的pokemongo.app文件<br>进入<a href="https://github.com/rpplusplus/PokemonHook" target="_blank" rel="noopener">github地址</a>下载后解压pokemon_unsigned.zip,得到Payload文件，Payload目录下有一个pokemongo的文件，这个文件就是已经修改过localtion框架的APP文件。<br>2.下载iOS App Signer<br><a href="https://github.com/DanTheMan827/ios-app-signer" target="_blank" rel="noopener">github地址</a><br>使用Xcode打开项目，直接运行。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/453533-51e9644b829911a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="APP Signer.png"></p>
+<p>Iput File选择刚才下载的pokemongo.app文件,Signing Certificate选择刚才创建的证书，Provisioning Profile选择刚创建的描述文件，填入你想要的显示的APP名称在APP Display Name这行。点击Start，即可生成一个.ipa文件。<br>这时将手机连接到Mac,在XCode中，切换到Windows - Devices 的窗口下选择你的手机, 把刚刚做好的 ipa 拖入, 即可将应用安装到手机上。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/453533-fc54bfc547148999.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="启动.jpg"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/453533-66efc0f730c710b6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="游戏.jpg"></p>
+<blockquote>
+<p>如果你没有开发者账号也没有Mac，留言发你的UDID给我哟！稍后便可以通过以下地址直接下载安装，再也不锁区，亲测可用。<br><a href="http://fir.im/jdku" target="_blank" rel="noopener">下载地址</a><br>或者扫描二维码<br><img src="http://upload-images.jianshu.io/upload_images/453533-3105fabc8ea82458.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="qrcode.png"></p>
+</blockquote>
+
+  </section>
+
+  
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'xtcel'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]}
+            });
+        });
+    </script>
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

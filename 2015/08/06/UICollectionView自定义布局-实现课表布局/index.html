@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      UICollectionView自定义布局--实现课表布局 | XTCEL 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Jack Yong">
+    
+    
+
+    <meta name="description" content="需求自iOS6加入UICollectionView以来，UICollectionView在各大项目中的使用就非常频繁。UICollectionView灵活的布局可以实现很多以前使用UITableView根本无法完成的效果。这篇文章将会带你一步一步的使用自定义的UICollectionView布局来实现一个课表。为了方便读者，项目的代码在我的github上。 项目最终实现的效果如下图所示： 分析从上">
+<meta name="keywords" content="iOS,UICollectionView,自定义CollectionViewLayout">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UICollectionView自定义布局--实现课表布局 | XTCEL">
+<meta property="og:url" content="http://xtcel.com/2015/08/06/UICollectionView自定义布局-实现课表布局/index.html">
+<meta property="og:site_name" content="XTCEL">
+<meta property="og:description" content="需求自iOS6加入UICollectionView以来，UICollectionView在各大项目中的使用就非常频繁。UICollectionView灵活的布局可以实现很多以前使用UITableView根本无法完成的效果。这篇文章将会带你一步一步的使用自定义的UICollectionView布局来实现一个课表。为了方便读者，项目的代码在我的github上。 项目最终实现的效果如下图所示： 分析从上">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://o88f31ee3.bkt.clouddn.com/blog/image/png/iOS-TimeTable.png">
+<meta property="og:updated_time" content="2018-01-11T08:53:23.423Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UICollectionView自定义布局--实现课表布局 | XTCEL">
+<meta name="twitter:description" content="需求自iOS6加入UICollectionView以来，UICollectionView在各大项目中的使用就非常频繁。UICollectionView灵活的布局可以实现很多以前使用UITableView根本无法完成的效果。这篇文章将会带你一步一步的使用自定义的UICollectionView布局来实现一个课表。为了方便读者，项目的代码在我的github上。 项目最终实现的效果如下图所示： 分析从上">
+<meta name="twitter:image" content="http://o88f31ee3.bkt.clouddn.com/blog/image/png/iOS-TimeTable.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/images/avatar.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for XTCEL"><img src="/images/avatar.png" width="80" alt="XTCEL logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">XTCEL</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          关注技术   热爱设计
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/xtcel" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">UICollectionView自定义布局--实现课表布局</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2015-08-06" class="post-meta__date date">2015-08-06</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/UICollectionView/">UICollectionView</a>, <a class="tags-link" href="/tags/iOS/">iOS</a>, <a class="tags-link" href="/tags/自定义CollectionViewLayout/">自定义CollectionViewLayout</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><p>自iOS6加入UICollectionView以来，UICollectionView在各大项目中的使用就非常频繁。UICollectionView灵活的布局可以实现很多以前使用UITableView根本无法完成的效果。这篇文章将会带你一步一步的使用自定义的UICollectionView布局来实现一个课表。为了方便读者，项目的代码在<a href="https://github.com/yongca887/CustomCollectionViewLayout" target="_blank" rel="noopener">我的github</a>上。 项目最终实现的效果如下图所示：<br><img src="http://o88f31ee3.bkt.clouddn.com/blog/image/png/iOS-TimeTable.png" alt="课表.png"></p>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>从上图可以看出，课表主要分为三块:</p>
+<ul>
+<li>顶部显示星期数的WeekHeaderView</li>
+<li>侧边显示第几节课的CourseHeaderView</li>
+<li>中间显示的课程内容Cell。</li>
+</ul>
+<h4 id="自定义布局"><a href="#自定义布局" class="headerlink" title="自定义布局"></a>自定义布局</h4><p>在一些简单的项目中，在使用UICollectionView进行布局时，通常都会使用UICollectionViewFlowLayout,这是Apple默认实现一个流式布局，什么是流式？就是像水流一样一个接一个。UITableView就是流式，下一个Cell的位置是在上一个Cell位置之后。而课表的布局却是每个课程Cell不是一个接一个的，前一个Cell的位置和后一Cell的位置没有关系，课程Cell的位置取决于是从第几节课上到第几节课以及是星期几上课。位置取决于课程内容本身。 如果有一个依赖内容的布局，那就是暗示需要写自定义的布局类了，如果使用直接UICollectionViewFlowLayout你将会遇到很多问题。 怎么自定义布局？ 继承UICollectionViewFlowLayout的父类UICollectionViewLayout。这是面向对象编程中惯用的自定义某类的手法。你要自定义一个UIButton,你只需继承UIButton的父类和实现UIButton实现的接口，加入一些自己的实现就可以了。查看UICollectionViewLayout官文文档，其中讲到如何自定义一个布局对象。 <div style="text-align: left;"><br>  文档原文如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Methods to Override Every layout object should implement the following methods:</span><br><span class="line">collectionViewContentSize</span><br><span class="line">layoutAttributesForElementsInRect:</span><br><span class="line">layoutAttributesForItemAtIndexPath:</span><br><span class="line">layoutAttributesForSupplementaryViewOfKind:atIndexPath:(if your layout supports supplementary views)</span><br><span class="line">layoutAttributesForDecorationViewOfKind:atIndexPath: (if your layout supports decoration views)</span><br><span class="line">shouldInvalidateLayoutForBoundsChange:</span><br><span class="line">These methods provide the fundamental layout information that the collection view needs to place contents on the screen. Of course, if your layout does not support supplementary or decoration views, do not implement the corresponding methods.</span><br></pre></td></tr></table></figure></div></p>
+<p>我英语不好，但是大概可以看出来，要自定义UICollectionView布局不实现这些方法是不行的。<br>那这些方法都是些什么鬼 ？骚年不要急，听我慢慢道来。<br>collectionViewContentSize<br>由于collection view对它的content并不知情，所以布局首先要提供的信息就是内容区域大小，这样collection view才能正确的管理滚动。内容的总大小包含cell、supplementary views和decoration views。<br>在本项目中，ContentSize为上图红色框大小，当contentSize比屏幕的大小更大时，就可以上下或者左右滚动。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (CGSize)collectionViewContentSize &#123; CGFloat collectionViewWidth = self.collectionView.bounds.size.width; CGFloat minContentWidth = courseHeaderWidth + (MinWeekHeaderWidth * kWeekNumber); CGFloat contentHeight =  weekHeaderHeight + (CellHeight * KCourseNumber); CGSize contentSize = CGSizeMake((collectionViewWidth layoutAttributesForElementsInRect:</span><br></pre></td></tr></table></figure></p>
+<p>这是自定义布局类中最重要的一个方法，该方法返回所有的元素的布局属性数组(UICollectionViewLayoutAttributes)，包括所有的cell布局属性(主要是位置信息)、supplementary、decoration views。collection view调用这个方法并传递一个自身坐标系统中的矩形过去。这个矩形代表了这个视图的可见矩形区域（也就是它的bounds），你需要准备好处理传给你的任何矩形。 UICollectionViewLayoutAttributes类包含了collection view内item的所有相关布局属性。默认情况下，这个类包含frame，center，size，transform3D，alpha，zIndex属性(properties)，和hidden特性(attributes)。如果你的布局想要控制其他视图的属性（比如，背景颜色），你可以建一个UICollectionViewLayoutAttributes的子类，然后加上你自己的属性。 layoutAttributesForItemAtIndexPath: 有时，collection view会为某个特殊的cell，supplementary或者decoration view向布局对象请求布局属性，而非所有可见的对象。这就是当其他三个方法开始起作用时，你实现的layoutAttributesForItemAtIndexPath：需要创建并返回一个单独的布局属性对象，这样才能正确的格式化传给你的index path所对应的cell。 你可以通过调用 +[UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:]这个方法，然后根据index path修改属性。为了得到需要显示在这个index path内的数据，你可能需要访问collection view的数据源。到目前为止，至少确保设置了frame属性，除非你所有的cell都位于彼此上方。 layoutAttributesForSupplementaryViewOfKind:atIndexPath: layoutAttributesForDecorationViewOfKind:atIndexPath: shouldInvalidateLayoutForBoundsChange: 当collection view的bounds改变时，布局需要告诉collection view是否需要重新计算布局。我的猜想是：当collection view改变大小时，大多数布局会被作废，比如设备旋转的时候。因此，一个幼稚的实现可能只会简单的返回YES。虽然实现功能很重要，但是scroll view的bounds在滚动时也会改变，这意味着你的布局每秒会被丢弃多次。根据计算的复杂性判断，这将会对性能产生很大的影响。</p>
+
+  </section>
+
+  
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'xtcel'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]}
+            });
+        });
+    </script>
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

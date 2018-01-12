@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Ubuntu 配置Nginx+PHP+MySql | XTCEL 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Jack Yong">
+    
+    
+
+    <meta name="description" content="Nginx 是一个轻量级，以占用系统资源少，运行效率而成为web服务器的后起之秀，国内现在很多大型网站都以使用nginx.PHP亦是当前最火爆的web服务器脚本语言。MySql速度快，体积小，作为服务器后台数据库非常受欢迎。这个组合可以非常适合作为一些小型网站、博客的服务器。">
+<meta name="keywords" content="服务器,Ubuntu,Nginx,PHP,MySql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 配置Nginx+PHP+MySql | XTCEL">
+<meta property="og:url" content="http://xtcel.com/2015/08/12/Ubuntu-配置Nginx-PHP-MySql/index.html">
+<meta property="og:site_name" content="XTCEL">
+<meta property="og:description" content="Nginx 是一个轻量级，以占用系统资源少，运行效率而成为web服务器的后起之秀，国内现在很多大型网站都以使用nginx.PHP亦是当前最火爆的web服务器脚本语言。MySql速度快，体积小，作为服务器后台数据库非常受欢迎。这个组合可以非常适合作为一些小型网站、博客的服务器。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://o88f31ee3.bkt.clouddn.com/blog/image/jpg/Server.jpg">
+<meta property="og:updated_time" content="2018-01-11T08:53:23.423Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu 配置Nginx+PHP+MySql | XTCEL">
+<meta name="twitter:description" content="Nginx 是一个轻量级，以占用系统资源少，运行效率而成为web服务器的后起之秀，国内现在很多大型网站都以使用nginx.PHP亦是当前最火爆的web服务器脚本语言。MySql速度快，体积小，作为服务器后台数据库非常受欢迎。这个组合可以非常适合作为一些小型网站、博客的服务器。">
+<meta name="twitter:image" content="http://o88f31ee3.bkt.clouddn.com/blog/image/jpg/Server.jpg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/images/avatar.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for XTCEL"><img src="/images/avatar.png" width="80" alt="XTCEL logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">XTCEL</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          关注技术   热爱设计
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/xtcel" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">Ubuntu 配置Nginx+PHP+MySql</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2015-08-12" class="post-meta__date date">2015-08-12</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/MySql/">MySql</a>, <a class="tags-link" href="/tags/Nginx/">Nginx</a>, <a class="tags-link" href="/tags/PHP/">PHP</a>, <a class="tags-link" href="/tags/Ubuntu/">Ubuntu</a>, <a class="tags-link" href="/tags/服务器/">服务器</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>Nginx 是一个轻量级，以占用系统资源少，运行效率而成为web服务器的后起之秀，国内现在很多大型网站都以使用nginx.<br>PHP亦是当前最火爆的web服务器脚本语言。<br>MySql速度快，体积小，作为服务器后台数据库非常受欢迎。<br>这个组合可以非常适合作为一些小型网站、博客的服务器。<br><a id="more"></a><br><img src="http://o88f31ee3.bkt.clouddn.com/blog/image/jpg/Server.jpg" alt=""></p>
+<h4 id="一、使用官方PPA安装-Nginx-最新版本"><a href="#一、使用官方PPA安装-Nginx-最新版本" class="headerlink" title="一、使用官方PPA安装 Nginx 最新版本"></a>一、使用官方PPA安装 Nginx 最新版本</h4><ol>
+<li><p>安装python-software-properties，要先安python-software-properties 才能使用 add-apt-repository，我一开始就直接使        用sudo add-apt-repository ppa:nginx/stable命令，导致了add-apt-repository:command not found错误。       </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install python-software-properties</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加该源的keyserver，而add-apt-repository 就可以把添加源可添加apt-key的工作全部作了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:nginx/stable</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装Nginx:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Test Nginx：<br>启动 Nginx：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/nginx start</span><br></pre></td></tr></table></figure>
+<p>浏览器浏览运行情况输入：<a href="http://localhost" target="_blank" rel="noopener">http://localhost</a> ;如果现实”Welcome to nginx!”，表明你的 Nginx 服务器安装成功! 关闭 Nginx：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/nginx stop;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="二、配置安装PHP和MYSQL"><a href="#二、配置安装PHP和MYSQL" class="headerlink" title="二、配置安装PHP和MYSQL"></a>二、配置安装PHP和MYSQL</h4><ol>
+<li>安装php和MySQL:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php5-cli php5-cgi mysql-server php5-mysql</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="三、安装配置spawn-fcgi、配置Nginx，配置Nginx和spawn-fcgi配合运行"><a href="#三、安装配置spawn-fcgi、配置Nginx，配置Nginx和spawn-fcgi配合运行" class="headerlink" title="三、安装配置spawn-fcgi、配置Nginx，配置Nginx和spawn-fcgi配合运行"></a>三、安装配置spawn-fcgi、配置Nginx，配置Nginx和spawn-fcgi配合运行</h4><ol>
+<li><p>/usr/bin/spawn-fcgi这个文件来管理 FastCgi，它原属于lighttpd这个包里面，但 9.10 后，spawn-fcgi 被分离出来单独成包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install spawn-fcgi</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在/etc/nginx/fastcgi_params 文件最后,加入一行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/fastcgi_params</span><br></pre></td></tr></table></figure>
+<p> 加入此行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastcgi_param   SCRIPT_FILENAME   $document_root$fastcgi_script_name;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>另外需要在PHP-CGI的配置文件(Ubuntu 上此配置文件位于/etc/php5/cgi/php.ini)中,找到cgi.fix_pathinfo选项(找不到直接添加一行就可以了),修改为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cgi.fix_pathinfo=1;</span><br></pre></td></tr></table></figure>
+<p> 这样php-cgi方能正常使用SCRIPT_FILENAME这个变量.</p>
+</li>
+<li><p>修改nginx的配置文件：/etc/nginx/sites-available/default 修改主机名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server_name localhost;</span><br></pre></td></tr></table></figure>
+<p> 修改index的一行修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index index.php index.html index.htm;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>去除local .~ php 注释，改为如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location ~ .php$ &#123;</span><br><span class="line">fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">fastcgi_index index.php;</span><br><span class="line">fastcgi_param SCRIPT_FILENAME /var/www/nginx-default$fastcgi_script_name;</span><br><span class="line">include /etc/nginx/fastcgi_params; #包含fastcgi的参数文件地址</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开始fast_cgi进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/bin/spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u www-data -g www-data -f /usr/bin/php5-cgi -P /var/run/fastcgi-php.pid</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为了让php-cgi开机自启动：<br>cd /etc/init.d cp nginx php-cgi vim php-cgi<br>提示：如果打开php文件出现:No input file specified请检查php.ini的配置中 cgi.fix_pathinfo=1</p>
+</li>
+</ol>
+<h4 id="四、测试是否配置好PHP"><a href="#四、测试是否配置好PHP" class="headerlink" title="四、测试是否配置好PHP"></a>四、测试是否配置好PHP</h4><p>然后运行rcconf设置php-cgi为开机自启动,创建测试phpinfo：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /var/www/html/index.php</span><br></pre></td></tr></table></figure></p>
+<p>插入如下内容<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span> php phpinfo(); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>打开<a href="http://localhost/" target="_blank" rel="noopener">http://localhost/</a>;<br>如果配置正确，可以看到PHP版本信息页面</p>
+
+  </section>
+
+  
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'xtcel'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]}
+            });
+        });
+    </script>
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

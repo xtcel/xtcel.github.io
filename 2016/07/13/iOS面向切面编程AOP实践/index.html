@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      iOS面向切面编程AOP实践 | XTCEL 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Jack Yong">
+    
+    
+
+    <meta name="description" content="什么是AOPAOP：Aspect Oriented Programming，译为面向切面编程。 在不修改源代码的情况下，通过运行时给程序添加统一功能的技术。 我觉得其中有两层涵义：  第一：不修改源代码，即尽可能的解耦。 第二：添加统一的功能，即我们能实现的是添加统一的单一的功能，在某处使用AOP，我们只能实现一项单一的功能。如：日志记录。当然你可以添加多个AOP的模块到项目中，每一个实现不同功能">
+<meta name="keywords" content="iOS,AOP,Runtime">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS面向切面编程AOP实践 | XTCEL">
+<meta property="og:url" content="http://xtcel.com/2016/07/13/iOS面向切面编程AOP实践/index.html">
+<meta property="og:site_name" content="XTCEL">
+<meta property="og:description" content="什么是AOPAOP：Aspect Oriented Programming，译为面向切面编程。 在不修改源代码的情况下，通过运行时给程序添加统一功能的技术。 我觉得其中有两层涵义：  第一：不修改源代码，即尽可能的解耦。 第二：添加统一的功能，即我们能实现的是添加统一的单一的功能，在某处使用AOP，我们只能实现一项单一的功能。如：日志记录。当然你可以添加多个AOP的模块到项目中，每一个实现不同功能">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/453533-23f4284ad6eb902c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-01-11T08:53:23.424Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS面向切面编程AOP实践 | XTCEL">
+<meta name="twitter:description" content="什么是AOPAOP：Aspect Oriented Programming，译为面向切面编程。 在不修改源代码的情况下，通过运行时给程序添加统一功能的技术。 我觉得其中有两层涵义：  第一：不修改源代码，即尽可能的解耦。 第二：添加统一的功能，即我们能实现的是添加统一的单一的功能，在某处使用AOP，我们只能实现一项单一的功能。如：日志记录。当然你可以添加多个AOP的模块到项目中，每一个实现不同功能">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/453533-23f4284ad6eb902c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/images/avatar.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for XTCEL"><img src="/images/avatar.png" width="80" alt="XTCEL logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">XTCEL</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          关注技术   热爱设计
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/xtcel" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">iOS面向切面编程AOP实践</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-07-13" class="post-meta__date date">2016-07-13</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/AOP/">AOP</a>, <a class="tags-link" href="/tags/Runtime/">Runtime</a>, <a class="tags-link" href="/tags/iOS/">iOS</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h4 id="什么是AOP"><a href="#什么是AOP" class="headerlink" title="什么是AOP"></a>什么是AOP</h4><p>AOP：Aspect Oriented Programming，译为面向切面编程。</p>
+<p>在不修改源代码的情况下，通过运行时给程序添加统一功能的技术。</p>
+<p>我觉得其中有两层涵义：</p>
+<ul>
+<li>第一：不修改源代码，即尽可能的解耦。</li>
+<li>第二：添加统一的功能，即我们能实现的是添加统一的单一的功能，在某处使用AOP，我们只能实现一项单一的功能。如：日志记录。当然你可以添加多个AOP的模块到项目中，每一个实现不同功能，但是每一个功能必须是单一的。</li>
+</ul>
+<p>主要功能：日志记录，性能统计等。</p>
+<h4 id="iOS中如何实现AOP"><a href="#iOS中如何实现AOP" class="headerlink" title="iOS中如何实现AOP"></a>iOS中如何实现AOP</h4><p>有心的读者可能会发现，我在上面的AOP简介中并没有原话搬用百度百科的AOP简介，因为这是一篇iOS的AOP教程，在OC中我们就是用运行时来给实现AOP的。（我们基本不会使用预编译方式来实现AOP）</p>
+<p>在iOS中实现AOP的核心技术是Runtime,使用Runtime的Method Swizzling黑魔法，我们可以移花接木，在运行时将方法的具体实现添油加醋、偷梁换柱。</p>
+<p>点此移步了解<a href="http://www.cocoachina.com/ios/20160121/15076.html" target="_blank" rel="noopener">Method Swizzling</a></p>
+<h4 id="AOP技术实现"><a href="#AOP技术实现" class="headerlink" title="AOP技术实现"></a>AOP技术实现</h4><p>越是底层的框架越是难用，任何语言皆是如此，同样Method Swizzling也不例外。那是否有一个第三库，可以让我们轻松驾驭Method Swizzling黑魔法呢？</p>
+<p>当然有，而且不止一个，其中最著名的要数<a href="https://github.com/steipete/Aspects" target="_blank" rel="noopener">Aspects</a>，Aspects的使用非常简单，整个库封装为两个方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ (id&lt;AspectToken&gt;)aspect_hookSelector:(SEL)selector</span><br><span class="line">                      withOptions:(AspectOptions)options</span><br><span class="line">                       usingBlock:(id)block</span><br><span class="line">                            error:(NSError **)error;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (id&lt;AspectToken&gt;)aspect_hookSelector:(SEL)selector</span><br><span class="line">                      withOptions:(AspectOptions)options</span><br><span class="line">                       usingBlock:(id)block</span><br><span class="line">                            error:(NSError **)error;</span><br></pre></td></tr></table></figure>
+<p>实际为同一个方法，这两个方法是同名不同类型的方法，一个是静态类方法，一个是成员方法。<br>使用这个方法可以给类的实例方法添加一个Block，并且对这个类的所有对象都会起作用。</p>
+<p>所有的调用,都会是线程安全的。Aspects 使用了Objective-C 的消息转发机会,会有一定的性能消耗。所有对于过于频繁的调用,不建议使用 Aspects。Aspects更适用于视图/控制器相关的等每秒调用不超过1000次的代码。</p>
+<h6 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h6><p>在调试应用时,使用Aspects动态添加日志记录功能。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) &#123;</span><br><span class="line">    NSLog(@&quot;😜😜😜Appear:--&gt; %@&quot;, aspectInfo.instance);</span><br><span class="line">&#125; error:NULL];</span><br></pre></td></tr></table></figure></p>
+<p>通过这段代码，我们给UIViewController的viewWillAppear:方法添加了一个钩子，每当在调用viewWillAppear:后就会执行block中的代码。在此我们打印了一段Log（加上emoji表情就更好找log啦），通过log我们可以看到当前显示的页面的VC名称，从而快速定位到该类。还可以在ViewController的Dealloc时打印log：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[UIViewController aspect_hookSelector:NSSelectorFromString(@&quot;dealloc&quot;) withOptions:AspectPositionBefore usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) &#123;</span><br><span class="line">        NSLog(@&quot;😂😂😂Dealloc:----&gt;: %@&quot;, aspectInfo.instance);</span><br><span class="line">    &#125; error:NULL];</span><br></pre></td></tr></table></figure></p>
+<p>与上一段代码的微小差别是Selector换成了NSSelectorFromString(@”dealloc”)，而不是@selector(dealloc)，这是因为在ARC下面是不能直接手动调用Dealloc的，@selector(dealloc)会被编译器直接报错。</p>
+<p>通过这个log，我们可以知道ViewController是否释放，如果没有释放很可能就是有循环引用，这时你务必仔细检查你的代码，这在性能调试和debug中非常有用。</p>
+<h4 id="AOP实战"><a href="#AOP实战" class="headerlink" title="AOP实战"></a>AOP实战</h4><p>在实际的项目开发中，事件统计是很多APP都会添加一项重要功能，它能统计用户的行为、商品的销售状况、商品查看数据等，今天的AOP实战是利用AOP实现APP事件统计。</p>
+<h5 id="这样统计？"><a href="#这样统计？" class="headerlink" title="这样统计？"></a>这样统计？</h5><p>假设产品有这么个需求：当用户在详情页点击添加到购物车按钮时，记录一下事件。我们实现起来大概会是这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)onBuyButtonClicked:(id)sender</span><br><span class="line">&#123;</span><br><span class="line">    [XXXAnalytics track:eventName properties:properties];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个需求就这样轻松搞定了，但细细想想还是有不少问题的：</p>
+<ul>
+<li>页面上会有其他的 Button，可能每个 Button 都要放上这么一段代码。</li>
+<li>这些统计其实跟具体的业务无关，没必要跟业务代码混杂在一起，不优雅。</li>
+<li>当改版或者重构时，有可能忘了把相应的事件统计代码迁移过去。</li>
+</ul>
+<h5 id="使用AOP实现统计"><a href="#使用AOP实现统计" class="headerlink" title="使用AOP实现统计"></a>使用AOP实现统计</h5><p>基于上面的问题，需要将事件统计这段代码抽离，与具体点击事件逻辑代码解耦。通过AOP在运行时将事件统计的代码加入到方法中正是这个问题的最佳解。代码大概如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[PBAGoodsDetailViewController aspect_hookSelector:@selector(onBuyButtonClicked:) withOptions:AspectPositionAfter usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) &#123;</span><br><span class="line">        [XXXAnalytics track:eventName properties:properties];</span><br><span class="line">    &#125; error:NULL];</span><br></pre></td></tr></table></figure></p>
+<h6 id="多个事件？"><a href="#多个事件？" class="headerlink" title="多个事件？"></a>多个事件？</h6><p>当然事件统计往往需要统计多个事件，这时我们只要对该方法稍微抽象一下就可以了，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (void)setupAnalytics</span><br><span class="line">&#123;</span><br><span class="line">    [self trackEventWithClass:aViewController selector:@seletor(onBuyButtonTapped:) event:kSomeEventYouDefined];</span><br><span class="line">    [self trackEventWithClass:bViewController selector:@seletor(followButtonTapped:) event:kAnotherEventYouDefined];</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br><span class="line">- (void)trackEventWithClass:(Class)klass selector:(SEL)selector event:(NSString *)event</span><br><span class="line">&#123;</span><br><span class="line">[klass aspect_hookSelector:@selector(selector) withOptions:AspectPositionAfter usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) &#123;</span><br><span class="line">    [XXXAnalytics track:eventName properties:properties];</span><br><span class="line">    &#125; error:NULL];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="使用plist文件配置事件统计"><a href="#使用plist文件配置事件统计" class="headerlink" title="使用plist文件配置事件统计"></a>使用plist文件配置事件统计</h6><p>当事件非常多时，你的setupAnalytics方法将会变得越来越长，而且不好维护。如果我们可以利用一张表格来配置事件统计，看起来会更加直观简洁。<br>使用Xcode创建一个plist文件，其文件结构如图：<br><img src="http://upload-images.jianshu.io/upload_images/453533-23f4284ad6eb902c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="EventList.plish"><br>使用类名作为字典的键，值为一个数组，数组内存放该类下的事件列表，每个事件包含事件ID(EventId)和触发事件的方法名称（MethodName）。<br>在AppDelegate.m中，添加事件统计的代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">- (void)setupAnalytics</span><br><span class="line">&#123;</span><br><span class="line">    //设置事件统计</span><br><span class="line">    //放到异步线程去执行</span><br><span class="line">    __weak typeof(self) ws = self;</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        //读取配置文件，获取需要统计的事件列表</span><br><span class="line">        NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;EventList&quot; ofType:@&quot;plist&quot;];</span><br><span class="line">        NSDictionary *eventStatisticsDict = [[NSDictionary alloc] initWithContentsOfFile:path];</span><br><span class="line">        for (NSString *classNameString in eventStatisticsDict.allKeys) &#123;</span><br><span class="line">            //使用运行时创建类对象</span><br><span class="line">            const char * className = [classNameString UTF8String];</span><br><span class="line">            //从一个字串返回一个类</span><br><span class="line">            Class newClass = objc_getClass(className);</span><br><span class="line">            NSArray *pageEventList = [eventStatisticsDict objectForKey:classNameString];</span><br><span class="line">            for (NSDictionary *eventDict in pageEventList) &#123;</span><br><span class="line">                //事件方法名称</span><br><span class="line">                NSString *eventMethodName = eventDict[@&quot;MethodName&quot;];</span><br><span class="line">                SEL seletor = NSSelectorFromString(eventMethodName);</span><br><span class="line"></span><br><span class="line">                NSString *eventId = eventDict[@&quot;EventId&quot;];</span><br><span class="line"></span><br><span class="line">                [self trackEventWithClass:newClass selector:seletor event:eventId];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>至此，一切好像都好像完美了，但人生总是充满了变数。</p>
+<h6 id="事件需要传递参数"><a href="#事件需要传递参数" class="headerlink" title="事件需要传递参数"></a>事件需要传递参数</h6><p>一个阳光明媚的上午，产品跑过来和我说事件统计需要传递一些参数，比如点击查看商品详情事件需要传递商品ID和商品名称。我当时心中就一万只草泥马在奔腾，但是没办法呀！我们只是搬砖的程序猿，只能低头默默的改。好不容易设计好的架构，眼看就要打回原形。后来仔细研究一番发现，其实Aspects是可以通过Block获取到方法传递的参数的，马上心情好了许多，修改思路马上再脑海形成。</p>
+<p>首先，将Block改为<figure class="highlight plain"><figcaption><span>aspectInfo, NSDictionary *dict)```，第一个参数一定要为```id<aspectinfo> aspectInfo```,后面接方法传递的对应类型的参数，这样便可以接收到方法调用传递的参数。但是每一个事件需要传递的参数都各不相同，那我们要如何配置呢？</aspectinfo></span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">我的方案是：在plist的事件字典中加入一个键为Params，值为数组的键值对。修改后配置文件如下：</span><br><span class="line"></span><br><span class="line">![EventListV2](http://upload-images.jianshu.io/upload_images/453533-a0d4cbd4b540a4ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)</span><br><span class="line">统计代码：</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>(void)setupAnalytics<br>{<br>  //设置事件统计<br>  //放到异步线程去执行<br>  __weak typeof(self) ws = self;<br>  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{</p>
+<pre><code>//读取配置文件，获取需要统计的事件列表
+NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;EventList&quot; ofType:@&quot;plist&quot;];
+NSDictionary *eventStatisticsDict = [[NSDictionary alloc] initWithContentsOfFile:path];
+for (NSString *classNameString in eventStatisticsDict.allKeys) {
+    //使用运行时创建类对象
+    const char * className = [classNameString UTF8String];
+    //从一个字串返回一个类
+    Class newClass = objc_getClass(className);
+    NSArray *pageEventList = [eventStatisticsDict objectForKey:classNameString];
+    for (NSDictionary *eventDict in pageEventList) {
+        //事件方法名称
+        NSString *eventMethodName = eventDict[@&quot;MethodName&quot;];
+        SEL seletor = NSSelectorFromString(eventMethodName);
+        NSString *eventId = eventDict[@&quot;EventId&quot;];
+        NSArray *params = eventDict[@&quot;Params&quot;];
+        [self trackEventWithClass:newClass selector:seletor event:eventId params:params];
+    }
+}
+</code></pre><p>  });<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">统计方法：</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>(void)trackEventWithClass:(Class)klass selector:(SEL)selector event:(NSString <em>)event params:(NSArray </em>)paramNames<br>{<br>  [klass aspect_hookSelector:@selector(selector) withOptions:AspectPositionAfter usingBlock:^(id<aspectinfo> aspectInfo, NSDictionary *dict) {</aspectinfo></p>
+<pre><code>//定义与事件相关的属性信息
+NSMutableDictionary *properties = [NSMutableDictionary dictionary];
+//如果有参数，那么把参数名和参数值拼接在eventID之后
+if (paramNames.count &gt; 0) {
+    if ([dict isKindOfClass:[NSDictionary class]]) {
+        //获取dict
+        for (NSString *paramName in paramNames) {
+            //添加所需参数
+            NSString *paramValue = [dict objectForKey:paramName];
+            properties[paramName] = paramValue;
+        }
+    }
+}
+
+[XXXAnalytics track:eventName properties:properties];
+</code></pre><p>  } error:NULL];<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">将需要传递的参数以字典格式作为方法的第一个参数，Params中配置事件统计需要传递的参数的Key，通过此方法可以传递任何我们需要传递的参数，使用plist快速、灵活配置需要传递的参数。实战内容到此基本结束，我们使用AOP已经实现了一个低耦合、可灵活配置的事件统计。</span><br><span class="line">#### 还有一些挑战</span><br><span class="line">在使用Aspects中我发现，如果方法为类方法时，并不会回调block。在调用aspect_hookSelector:withOptions:usingBlock:时，报```Aspects: Block signature &lt;NSMethodSignature: 0x7fa13345ce60&gt; doesn&apos;t match (null).```错误提示，意思是block不匹配，其根本原因在于无法使用Class获取该Class的类方法，通过runtime只能获取到成员方法，而类方法需要使用该Class的MetaClass获取，MateClass可以使用```object_getClass(newClass)```得到。代码如下：</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>[ws trackEventWithClass:object_getClass(newClass) selector:seletor event:eventId params:params];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">修改后虽然不会报错，但是依然不会触发block。查看Aspects的github介绍发现，Aspects压根就不支持类方法，这让我很是苦恼。不过按道理应该是可以的，于是和同事讨论了一下，就使用Method Swizzling做了交换两个类方法的试验，结果是成功了。</span><br><span class="line"></span><br><span class="line">查看Aspects的源代码发现，Aspects交换的是成员方法。无奈最后只能修改Aspects的源代码，我在其中一方法中加入了Class类型判断，如果是MetaClass，那么就初始化为类方法，而非成员方法。代码如下：</span><br></pre></td></tr></table></figure></p>
+<p>static void aspect_prepareClassAndHookSelector(NSObject <em>self, SEL selector, NSError *</em>error) {<br>    NSCParameterAssert(selector);<br>    Class klass = aspect_hookClass(self, error);<br>    //TODO:Edit bu JackYong<br>    Method targetMethod;<br>    IMP targetMethodIMP;<br>    if (class_isMetaClass(klass)) {<br>        targetMethod = class_getClassMethod(klass, selector);<br>        targetMethodIMP = method_getImplementation(targetMethod);<br>    } else {<br>        targetMethod = class_getInstanceMethod(klass, selector);<br>        targetMethodIMP = method_getImplementation(targetMethod);<br>    }<br>```<br>修改后block和往常一样被调用了。暂时使用没有遇到什么问题，不过目测应该是有bug的，不然Aspects的开发者早就加了这判断。</p>
+<h5 id="Aspects的坑"><a href="#Aspects的坑" class="headerlink" title="Aspects的坑"></a>Aspects的坑</h5><ul>
+<li>1.无法为类方法添加hooking（通过上面的方法暂时可以解决，不过还是不太建议使用）</li>
+<li>2.Block无法自动判断参数个数，自动匹配。如果你添加一个无参的方法，而Block中有跟一个参数，那么你会收到Block不匹配的错误。</li>
+</ul>
+<blockquote>
+<p>参考<br><a href="http://my.oschina.net/leejun2005/blog/504732" target="_blank" rel="noopener">iOS 统计打点那些事</a></p>
+</blockquote>
+
+  </section>
+
+  
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'xtcel'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]}
+            });
+        });
+    </script>
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

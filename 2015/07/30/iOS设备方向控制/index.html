@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      iOS设备方向控制 | XTCEL 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Jack Yong">
+    
+    
+
+    <meta name="description" content="FirstiOS设备方向控制 最近在写自己的项目的时候需要用到根据设备方向控制视图的方向。开始我的需求是iPad只可以左右翻转，iPhone只能正向。首先要实现设备方向翻转需要到General -&amp;gt;Device Orientation中勾选所需要可以启用的设备方向，iOS设备支持四种设备方向分别为：  Portrait (正向) Upside down (颠倒) Landscape Left">
+<meta name="keywords" content="iOS,设备方向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS设备方向控制 | XTCEL">
+<meta property="og:url" content="http://xtcel.com/2015/07/30/iOS设备方向控制/index.html">
+<meta property="og:site_name" content="XTCEL">
+<meta property="og:description" content="FirstiOS设备方向控制 最近在写自己的项目的时候需要用到根据设备方向控制视图的方向。开始我的需求是iPad只可以左右翻转，iPhone只能正向。首先要实现设备方向翻转需要到General -&amp;gt;Device Orientation中勾选所需要可以启用的设备方向，iOS设备支持四种设备方向分别为：  Portrait (正向) Upside down (颠倒) Landscape Left">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://o88f31ee3.bkt.clouddn.com/blog/image/png/ios_orientation.png">
+<meta property="og:updated_time" content="2018-01-11T08:53:23.424Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS设备方向控制 | XTCEL">
+<meta name="twitter:description" content="FirstiOS设备方向控制 最近在写自己的项目的时候需要用到根据设备方向控制视图的方向。开始我的需求是iPad只可以左右翻转，iPhone只能正向。首先要实现设备方向翻转需要到General -&amp;gt;Device Orientation中勾选所需要可以启用的设备方向，iOS设备支持四种设备方向分别为：  Portrait (正向) Upside down (颠倒) Landscape Left">
+<meta name="twitter:image" content="http://o88f31ee3.bkt.clouddn.com/blog/image/png/ios_orientation.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/images/avatar.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for XTCEL"><img src="/images/avatar.png" width="80" alt="XTCEL logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">XTCEL</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          关注技术   热爱设计
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/xtcel" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+    
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">iOS设备方向控制</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2015-07-30" class="post-meta__date date">2015-07-30</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/iOS/">iOS</a>, <a class="tags-link" href="/tags/设备方向/">设备方向</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h4 id="First"><a href="#First" class="headerlink" title="First"></a>First</h4><p>iOS设备方向控制 最近在写自己的项目的时候需要用到根据设备方向控制视图的方向。开始我的需求是iPad只可以左右翻转，iPhone只能正向。首先要实现设备方向翻转需要到General -&gt;Device Orientation中勾选所需要可以启用的设备方向，iOS设备支持四种设备方向分别为：</p>
+<ul>
+<li>Portrait (正向)</li>
+<li>Upside down (颠倒)</li>
+<li>Landscape Left （向左侧翻转）</li>
+<li>Landscape Right (向右侧翻转) 我勾选了如下选项：</li>
+</ul>
+<p><img src="http://o88f31ee3.bkt.clouddn.com/blog/image/png/ios_orientation.png" alt="ios_orientation.png"></p>
+<h4 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h4><p>接下来我在ApplicationDelegate的application: supportedInterfaceOrientationsForWindow:方法中添加判断语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window &#123;</span><br><span class="line">  if (ISIPAD) &#123;</span><br><span class="line">      return UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return UIInterfaceOrientationMaskPortrait;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>ISIPAD的宏定义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define ISIPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)</span><br></pre></td></tr></table></figure></p>
+<p>这样我就实现刚才所需要实现的功能。 然而随着开发的继续需求也发生了变化，新的需求是需要在特定的ViewController中iPhone也可以左右翻转。由于上面的方法是全局判断，这样就不能实现这个需求。现在需要ViewController层面的设备方向控制方法。我查看Api文档发现如下两个方法可以实现ViewController层面的设备方向控制：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)shouldAutorotate;</span><br><span class="line">- (NSUInteger)supportedInterfaceOrientations;</span><br><span class="line">- (BOOL)shouldAutorotate方法控制本ViewController</span><br></pre></td></tr></table></figure>
+<p>是否可以翻转界面，其官方描述为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    Returns a Boolean value indicating whether the view controllers contents should auto rotate.</span><br><span class="line">    When the user changes the device orientation, the system calls this method on the root view controller or the topmost presented view controller that fills the window. If the view controller supports the new orientation, the window and view controller are rotated to the new orientation. This method is only called if the view controller&apos;s shouldAutorotate method returns YES.</span><br><span class="line"></span><br><span class="line">    Override this method to report all of the orientations that the view controller supports. The default values for a view controller&apos;s supported interface orientations is set to UIInterfaceOrientationMaskAll for the iPad idiom and UIInterfaceOrientationMaskAllButUpsideDown for the iPhone idiom.</span><br><span class="line"></span><br><span class="line">    The system intersects the view controller&apos;s supported orientations with the app&apos;s supported orientations (as determined by the Info.plist file or the app delegate&apos;s application:supportedInterfaceOrientationsForWindow: method) to determine whether to rotate.</span><br><span class="line">    **Return Value**</span><br><span class="line">    YES if the content should rotate, otherwise NO. Default value is YES.</span><br><span class="line">     (NSUInteger)supportedInterfaceOrientations方法返回ViewController支持的设备翻转方向的类型： 接口文档描述为： Returns all of the interface orientations that the view controller supports. 返回值：UIInterfaceOrientationMask类型的bit-mask值</span><br><span class="line">A bit mask specifying which orientations are supported. See UIInterfaceOrientationMask for valid bit-mask values. The value returned by this method must not be 0.</span><br></pre></td></tr></table></figure></p>
+<p>UIInterfaceOrientationMask类型的定义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef enum : NSUInteger &#123;</span><br><span class="line">  UIInterfaceOrientationMaskPortrait = (1 &lt;&lt; UIInterfaceOrientationPortrait ),</span><br><span class="line">  UIInterfaceOrientationMaskLandscapeLeft = (1 &lt;&lt; UIInterfaceOrientationLandscapeLeft ),</span><br><span class="line">  UIInterfaceOrientationMaskLandscapeRight = (1 &lt;&lt; UIInterfaceOrientationLandscapeRight ),</span><br><span class="line">  UIInterfaceOrientationMaskPortraitUpsideDown = (1 &lt;&lt; UIInterfaceOrientationPortraitUpsideDown ),</span><br><span class="line">  UIInterfaceOrientationMaskLandscape = (UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight ),</span><br><span class="line">  UIInterfaceOrientationMaskAll = (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight | UIInterfaceOrientationMaskPortraitUpsideDown ),</span><br><span class="line">  UIInterfaceOrientationMaskAllButUpsideDown = (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight ),</span><br><span class="line"> &#125; UIInterfaceOrientationMask;</span><br></pre></td></tr></table></figure></p>
+<p>从定义中我们看到一些预定义好的一些值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- UIInterfaceOrientationMaskPortrait(正常)</span><br><span class="line">- UIInterfaceOrientationMaskLandscapeLeft (左侧翻转)</span><br><span class="line">- UIInterfaceOrientationMaskLandscapeRight (右侧翻转)</span><br><span class="line">- UIInterfaceOrientationMaskPortraitUpsideDown (颠倒) -UIInterfaceOrientationMaskLandscape =(UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight )（左右翻转）</span><br><span class="line">- UIInterfaceOrientationMaskAll = (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight | UIInterfaceOrientationMaskPortraitUpsideDown )(所有类型)</span><br><span class="line">- UIInterfaceOrientationMaskAllButUpsideDown = (UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight )(支持左右翻转和正常模式)</span><br></pre></td></tr></table></figure></p>
+<p>当然我们可以自己随意组合自己需要的模式，只需用 | 号将他们连接起来。 上面的描述文件中我们可以知道，当设备方向发生变化时，会调用根视图的这个方法或者顶层视图的这个方法，通过这个特性，我们可以在RootViewController中进行设置，一般根视图都是UINavigationController,那么只需要新建一个UINavgationCtorller子类或者创建UINavigationController的Category中重写这个方法就可以了。 以下是UINavigationController的Category：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;CSMainViewController.h&quot;</span><br><span class="line">#import&quot;UINavigationController+InterfaceOrientation.h&quot;</span><br><span class="line">@implementation UINavigationController (InterfaceOrientation)</span><br><span class="line">- (BOOL)shouldAutorotate &#123;</span><br><span class="line">  return self.topViewController.shouldAutorotate;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSUInteger)supportedInterfaceOrientations &#123;</span><br><span class="line">   if (ISIPAD) &#123;</span><br><span class="line">     //如果是ipad，只能左右翻转 return UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight;</span><br><span class="line">     &#125; else &#123;</span><br><span class="line">       //如果是iPhone并且是MainViewController类，则可以左右翻转和正向，其他视图都只能正向，不能翻转</span><br><span class="line">       if ([self.topViewController isKindOfClass:[CSMainViewController class]]) &#123;</span><br><span class="line">          return UIInterfaceOrientationMaskAllButUpsideDown;</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            return UIInterfaceOrientationMaskPortrait;</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
+<h4 id="End"><a href="#End" class="headerlink" title="End"></a>End</h4><p>最后将Category的头文件导到ApplicationDelegate就可以了，终于一切和我们想象的一样工作！</p>
+
+  </section>
+
+  
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = 'xtcel'; 
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]}
+            });
+        });
+    </script>
+
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
