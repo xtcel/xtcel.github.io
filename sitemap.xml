@@ -2,6 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://xtcel.github.io/top/books/</loc>
+    <lastmod>2022-03-04T12:57:45+08:00</lastmod>
+  </url><url>
+    <loc>https://xtcel.github.io/top/</loc>
+    <lastmod>2022-03-04T12:57:45+08:00</lastmod>
+  </url><url>
+    <loc>https://xtcel.github.io/</loc>
+    <lastmod>2022-03-04T12:57:45+08:00</lastmod>
+  </url><url>
+    <loc>https://xtcel.github.io/top/about/</loc>
+    <lastmod>2022-03-04T12:57:05+08:00</lastmod>
+  </url><url>
     <loc>https://xtcel.github.io/categories/</loc>
     <lastmod>2017-12-06T00:00:00+00:00</lastmod>
   </url><url>
@@ -21,9 +33,6 @@
     <lastmod>2017-12-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://xtcel.github.io/categories/tech/</loc>
-    <lastmod>2017-12-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://xtcel.github.io/</loc>
     <lastmod>2017-12-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://xtcel.github.io/tags/macos10.12/</loc>
@@ -133,7 +142,5 @@
     <loc>https://xtcel.github.io/top/archive/</loc>
   </url><url>
     <loc>https://xtcel.github.io/search/</loc>
-  </url><url>
-    <loc>https://xtcel.github.io/top/</loc>
   </url>
 </urlset>
