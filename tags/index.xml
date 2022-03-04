@@ -2,215 +2,215 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on XTCEL Blog</title>
-    <link>https://xtcel.com/tags/</link>
+    <link>https://xtcel.github.io/tags/</link>
     <description>Recent content in Tags on XTCEL Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Oct 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://xtcel.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Oct 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://xtcel.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mac</title>
-      <link>https://xtcel.com/tags/mac/</link>
+      <link>https://xtcel.github.io/tags/mac/</link>
       <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/mac/</guid>
+      <guid>https://xtcel.github.io/tags/mac/</guid>
       <description></description>
     </item>
     
     <item>
       <title>macOS10.12</title>
-      <link>https://xtcel.com/tags/macos10.12/</link>
+      <link>https://xtcel.github.io/tags/macos10.12/</link>
       <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/macos10.12/</guid>
+      <guid>https://xtcel.github.io/tags/macos10.12/</guid>
       <description></description>
     </item>
     
     <item>
       <title>崩溃</title>
-      <link>https://xtcel.com/tags/%E5%B4%A9%E6%BA%83/</link>
+      <link>https://xtcel.github.io/tags/%E5%B4%A9%E6%BA%83/</link>
       <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/%E5%B4%A9%E6%BA%83/</guid>
+      <guid>https://xtcel.github.io/tags/%E5%B4%A9%E6%BA%83/</guid>
       <description></description>
     </item>
     
     <item>
       <title>破解软件</title>
-      <link>https://xtcel.com/tags/%E7%A0%B4%E8%A7%A3%E8%BD%AF%E4%BB%B6/</link>
+      <link>https://xtcel.github.io/tags/%E7%A0%B4%E8%A7%A3%E8%BD%AF%E4%BB%B6/</link>
       <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/%E7%A0%B4%E8%A7%A3%E8%BD%AF%E4%BB%B6/</guid>
+      <guid>https://xtcel.github.io/tags/%E7%A0%B4%E8%A7%A3%E8%BD%AF%E4%BB%B6/</guid>
       <description></description>
     </item>
     
     <item>
       <title>AOP</title>
-      <link>https://xtcel.com/tags/aop/</link>
+      <link>https://xtcel.github.io/tags/aop/</link>
       <pubDate>Wed, 13 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/aop/</guid>
+      <guid>https://xtcel.github.io/tags/aop/</guid>
       <description></description>
     </item>
     
     <item>
       <title>iOS</title>
-      <link>https://xtcel.com/tags/ios/</link>
+      <link>https://xtcel.github.io/tags/ios/</link>
       <pubDate>Wed, 13 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/ios/</guid>
+      <guid>https://xtcel.github.io/tags/ios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Runtime</title>
-      <link>https://xtcel.com/tags/runtime/</link>
+      <link>https://xtcel.github.io/tags/runtime/</link>
       <pubDate>Wed, 13 Jul 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/runtime/</guid>
+      <guid>https://xtcel.github.io/tags/runtime/</guid>
       <description></description>
     </item>
     
     <item>
       <title>WordPress</title>
-      <link>https://xtcel.com/tags/wordpress/</link>
+      <link>https://xtcel.github.io/tags/wordpress/</link>
       <pubDate>Thu, 09 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/wordpress/</guid>
+      <guid>https://xtcel.github.io/tags/wordpress/</guid>
       <description></description>
     </item>
     
     <item>
       <title>博客</title>
-      <link>https://xtcel.com/tags/%E5%8D%9A%E5%AE%A2/</link>
+      <link>https://xtcel.github.io/tags/%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Thu, 09 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>https://xtcel.github.io/tags/%E5%8D%9A%E5%AE%A2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jetbrains</title>
-      <link>https://xtcel.com/tags/jetbrains/</link>
+      <link>https://xtcel.github.io/tags/jetbrains/</link>
       <pubDate>Sun, 05 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/jetbrains/</guid>
+      <guid>https://xtcel.github.io/tags/jetbrains/</guid>
       <description></description>
     </item>
     
     <item>
       <title>2015苹果发布会</title>
-      <link>https://xtcel.com/tags/2015%E8%8B%B9%E6%9E%9C%E5%8F%91%E5%B8%83%E4%BC%9A/</link>
+      <link>https://xtcel.github.io/tags/2015%E8%8B%B9%E6%9E%9C%E5%8F%91%E5%B8%83%E4%BC%9A/</link>
       <pubDate>Fri, 28 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/2015%E8%8B%B9%E6%9E%9C%E5%8F%91%E5%B8%83%E4%BC%9A/</guid>
+      <guid>https://xtcel.github.io/tags/2015%E8%8B%B9%E6%9E%9C%E5%8F%91%E5%B8%83%E4%BC%9A/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MySql</title>
-      <link>https://xtcel.com/tags/mysql/</link>
+      <link>https://xtcel.github.io/tags/mysql/</link>
       <pubDate>Wed, 12 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/mysql/</guid>
+      <guid>https://xtcel.github.io/tags/mysql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Nginx</title>
-      <link>https://xtcel.com/tags/nginx/</link>
+      <link>https://xtcel.github.io/tags/nginx/</link>
       <pubDate>Wed, 12 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/nginx/</guid>
+      <guid>https://xtcel.github.io/tags/nginx/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PHP</title>
-      <link>https://xtcel.com/tags/php/</link>
+      <link>https://xtcel.github.io/tags/php/</link>
       <pubDate>Wed, 12 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/php/</guid>
+      <guid>https://xtcel.github.io/tags/php/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ubuntu</title>
-      <link>https://xtcel.com/tags/ubuntu/</link>
+      <link>https://xtcel.github.io/tags/ubuntu/</link>
       <pubDate>Wed, 12 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/ubuntu/</guid>
+      <guid>https://xtcel.github.io/tags/ubuntu/</guid>
       <description></description>
     </item>
     
     <item>
       <title>服务器</title>
-      <link>https://xtcel.com/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <link>https://xtcel.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
       <pubDate>Wed, 12 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <guid>https://xtcel.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
       <description></description>
     </item>
     
     <item>
       <title>UICollectionView</title>
-      <link>https://xtcel.com/tags/uicollectionview/</link>
+      <link>https://xtcel.github.io/tags/uicollectionview/</link>
       <pubDate>Thu, 06 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/uicollectionview/</guid>
+      <guid>https://xtcel.github.io/tags/uicollectionview/</guid>
       <description></description>
     </item>
     
     <item>
       <title>自定义CollectionViewLayout</title>
-      <link>https://xtcel.com/tags/%E8%87%AA%E5%AE%9A%E4%B9%89collectionviewlayout/</link>
+      <link>https://xtcel.github.io/tags/%E8%87%AA%E5%AE%9A%E4%B9%89collectionviewlayout/</link>
       <pubDate>Thu, 06 Aug 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/%E8%87%AA%E5%AE%9A%E4%B9%89collectionviewlayout/</guid>
+      <guid>https://xtcel.github.io/tags/%E8%87%AA%E5%AE%9A%E4%B9%89collectionviewlayout/</guid>
       <description></description>
     </item>
     
     <item>
       <title>QQ</title>
-      <link>https://xtcel.com/tags/qq/</link>
+      <link>https://xtcel.github.io/tags/qq/</link>
       <pubDate>Fri, 31 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/qq/</guid>
+      <guid>https://xtcel.github.io/tags/qq/</guid>
       <description></description>
     </item>
     
     <item>
       <title>漏洞</title>
-      <link>https://xtcel.com/tags/%E6%BC%8F%E6%B4%9E/</link>
+      <link>https://xtcel.github.io/tags/%E6%BC%8F%E6%B4%9E/</link>
       <pubDate>Fri, 31 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/%E6%BC%8F%E6%B4%9E/</guid>
+      <guid>https://xtcel.github.io/tags/%E6%BC%8F%E6%B4%9E/</guid>
       <description></description>
     </item>
     
     <item>
       <title>锯齿</title>
-      <link>https://xtcel.com/tags/%E9%94%AF%E9%BD%BF/</link>
+      <link>https://xtcel.github.io/tags/%E9%94%AF%E9%BD%BF/</link>
       <pubDate>Fri, 31 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/%E9%94%AF%E9%BD%BF/</guid>
+      <guid>https://xtcel.github.io/tags/%E9%94%AF%E9%BD%BF/</guid>
       <description></description>
     </item>
     
     <item>
       <title>设备方向</title>
-      <link>https://xtcel.com/tags/%E8%AE%BE%E5%A4%87%E6%96%B9%E5%90%91/</link>
+      <link>https://xtcel.github.io/tags/%E8%AE%BE%E5%A4%87%E6%96%B9%E5%90%91/</link>
       <pubDate>Thu, 30 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/%E8%AE%BE%E5%A4%87%E6%96%B9%E5%90%91/</guid>
+      <guid>https://xtcel.github.io/tags/%E8%AE%BE%E5%A4%87%E6%96%B9%E5%90%91/</guid>
       <description></description>
     </item>
     
     <item>
       <title>加密</title>
-      <link>https://xtcel.com/tags/%E5%8A%A0%E5%AF%86/</link>
+      <link>https://xtcel.github.io/tags/%E5%8A%A0%E5%AF%86/</link>
       <pubDate>Tue, 28 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://xtcel.com/tags/%E5%8A%A0%E5%AF%86/</guid>
+      <guid>https://xtcel.github.io/tags/%E5%8A%A0%E5%AF%86/</guid>
       <description></description>
     </item>
     
