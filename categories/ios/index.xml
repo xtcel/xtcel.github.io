@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>iOS on XTCEL Blog</title>
+    <link>https://xtcel.com/categories/ios/</link>
+    <description>Recent content in iOS on XTCEL Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 13 Jul 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://xtcel.com/categories/ios/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>iOS面向切面编程AOP实践</title>
+      <link>https://xtcel.com/post/ios%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8Baop%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Wed, 13 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.com/post/ios%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8Baop%E5%AE%9E%E8%B7%B5/</guid>
+      <description>什么是AOP AOP：Aspect Oriented Programming，译为面向切面编程。 在不修改源代码的情况下，通过运行时给程序添加统一功能的技术。 我觉</description>
+    </item>
+    
+    <item>
+      <title>UICollectionView自定义布局--实现课表布局</title>
+      <link>https://xtcel.com/post/uicollectionview%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B8%83%E5%B1%80-%E5%AE%9E%E7%8E%B0%E8%AF%BE%E8%A1%A8%E5%B8%83%E5%B1%80/</link>
+      <pubDate>Thu, 06 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.com/post/uicollectionview%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B8%83%E5%B1%80-%E5%AE%9E%E7%8E%B0%E8%AF%BE%E8%A1%A8%E5%B8%83%E5%B1%80/</guid>
+      <description>需求 自iOS6加入UICollectionView以来，UICollectionView在各大项目中的使用就非常频繁。UICollectio</description>
+    </item>
+    
+    <item>
+      <title>iOS旋转图片锯齿问题</title>
+      <link>https://xtcel.com/post/ios%E6%97%8B%E8%BD%AC%E5%9B%BE%E7%89%87%E9%94%AF%E9%BD%BF%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Fri, 31 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.com/post/ios%E6%97%8B%E8%BD%AC%E5%9B%BE%E7%89%87%E9%94%AF%E9%BD%BF%E9%97%AE%E9%A2%98/</guid>
+      <description>缘由 最近做项目，需要对一个小滑块进行旋转，滑块上面有一张图片。发现滑块只要一滑动就出现锯齿，后来发现是由于旋转变形时，图片仿射的多造成的。于</description>
+    </item>
+    
+    <item>
+      <title>iOS设备方向控制</title>
+      <link>https://xtcel.com/post/ios%E8%AE%BE%E5%A4%87%E6%96%B9%E5%90%91%E6%8E%A7%E5%88%B6/</link>
+      <pubDate>Thu, 30 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.com/post/ios%E8%AE%BE%E5%A4%87%E6%96%B9%E5%90%91%E6%8E%A7%E5%88%B6/</guid>
+      <description>First 最近在写自己的项目的时候需要用到根据设备方向控制视图的方向。开始我的需求是iPad只可以左右翻转，iPhone只能正向。首先要实现设备方向</description>
+    </item>
+    
+    <item>
+      <title>iOS加密算法(DES、AES、MD5、SHA512、Base64)</title>
+      <link>https://xtcel.com/post/ios%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Tue, 28 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.com/post/ios%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</guid>
+      <description>在iOS的项目中，我们经常会用到加密技术，比如说在登录的时候，我们会先把密码用MD5加密再传输给服务器或者直接对所有的参数进行加密再Post</description>
+    </item>
+    
+  </channel>
+</rss>
