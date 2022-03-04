@@ -6,7 +6,16 @@
     <description>Recent content in Posts on XTCEL Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Oct 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://xtcel.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Dec 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://xtcel.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mac更新Ruby报错</title>
+      <link>https://xtcel.github.io/post/mac-update-ruby-error/</link>
+      <pubDate>Wed, 06 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/post/mac-update-ruby-error/</guid>
+      <description>Mac更新Ruby报错 sudo gem update --system ERROR: While executing gem ... (Errno::EPERM) Operation not permitted - /usr/bin/update_rubygems 解决方法： sudo gem update -n /usr/local/bin --system</description>
+    </item>
+    
     <item>
       <title>解决MacOS 10.12破解软件崩溃</title>
       <link>https://xtcel.github.io/post/%E8%A7%A3%E5%86%B3macos10.12%E7%A0%B4%E8%A7%A3%E8%BD%AF%E4%BB%B6%E5%B4%A9%E6%BA%83/</link>
