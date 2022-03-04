@@ -250,26 +250,26 @@
 <p>所有的调用,都会是线程安全的。Aspects 使用了Objective-C 的消息转发机会,会有一定的性能消耗。所有对于过于频繁的调用,不建议使用 Aspects。Aspects更适用于视图/控制器相关的等每秒调用不超过1000次的代码。</p>
 <h6 id="代码示例">代码示例</h6>
 <p>在调试应用时,使用Aspects动态添加日志记录功能。</p>
-<pre tabindex="0"><code>[UIViewController aspect_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) {
-    //NSLog(@&quot;😜😜😜Appear:--&gt; %@&quot;, aspectInfo.instance);（为什么不使用此方式，请查看评论）
-    NSLog(@&quot;😜😜😜Appear:--&gt; %@&quot;, NSStringFromClass([aspectInfo.instance class]));
-} error:NULL];
-</code></pre><p>通过这段代码，我们给UIViewController的viewWillAppear:方法添加了一个钩子，每当在调用viewWillAppear:后就会执行block中的代码。在此我们打印了一段Log（加上emoji表情就更好找log啦），通过log我们可以看到当前显示的页面的VC名称，从而快速定位到该类。还可以在ViewController的Dealloc时打印log：</p>
-<pre tabindex="0"><code>[UIViewController aspect_hookSelector:NSSelectorFromString(@&quot;dealloc&quot;) withOptions:AspectPositionBefore usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) {
-        //NSLog(@&quot;😂😂😂Dealloc:----&gt;: %@&quot;, aspectInfo.instance);（为什么不使用此方式，请查看评论）
-        NSLog(@&quot;😂😂😂Dealloc:----&gt;: %@&quot;, NSStringFromClass([aspectInfo.instance class]));
-    } error:NULL];
-</code></pre><p>与上一段代码的微小差别是Selector换成了NSSelectorFromString(@&ldquo;dealloc&rdquo;)，而不是@selector(dealloc)，这是因为在ARC下面是不能直接手动调用Dealloc的，@selector(dealloc)会被编译器直接报错。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">[UIViewController <span style="color:#8be9fd;font-style:italic">aspect_hookSelector</span>:<span style="color:#ff79c6">@selector</span>(<span style="color:#8be9fd;font-style:italic">viewWillAppear</span>:) <span style="color:#8be9fd;font-style:italic">withOptions</span>:AspectPositionAfter <span style="color:#8be9fd;font-style:italic">usingBlock</span>:<span style="color:#ff79c6">^</span>(<span style="color:#8be9fd">id</span><span style="color:#ff79c6">&lt;</span>AspectInfo<span style="color:#ff79c6">&gt;</span> aspectInfo) {
+    <span style="color:#6272a4">//NSLog(@&#34;😜😜😜Appear:--&gt; %@&#34;, aspectInfo.instance);（为什么不使用此方式，请查看评论）
+</span><span style="color:#6272a4"></span>    NSLog(<span style="color:#f1fa8c">@&#34;😜😜😜Appear:--&gt; %@&#34;</span>, NSStringFromClass([aspectInfo.instance <span style="color:#ff79c6">class</span>]));
+} <span style="color:#8be9fd;font-style:italic">error</span>:<span style="color:#8be9fd;font-style:italic">NULL</span>];
+</code></pre></div><p>通过这段代码，我们给UIViewController的viewWillAppear:方法添加了一个钩子，每当在调用viewWillAppear:后就会执行block中的代码。在此我们打印了一段Log（加上emoji表情就更好找log啦），通过log我们可以看到当前显示的页面的VC名称，从而快速定位到该类。还可以在ViewController的Dealloc时打印log：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">[UIViewController <span style="color:#8be9fd;font-style:italic">aspect_hookSelector</span>:NSSelectorFromString(<span style="color:#f1fa8c">@&#34;dealloc&#34;</span>) <span style="color:#8be9fd;font-style:italic">withOptions</span>:AspectPositionBefore <span style="color:#8be9fd;font-style:italic">usingBlock</span>:<span style="color:#ff79c6">^</span>(<span style="color:#8be9fd">id</span><span style="color:#ff79c6">&lt;</span>AspectInfo<span style="color:#ff79c6">&gt;</span> aspectInfo) {
+        <span style="color:#6272a4">//NSLog(@&#34;😂😂😂Dealloc:----&gt;: %@&#34;, aspectInfo.instance);（为什么不使用此方式，请查看评论）
+</span><span style="color:#6272a4"></span>        NSLog(<span style="color:#f1fa8c">@&#34;😂😂😂Dealloc:----&gt;: %@&#34;</span>, NSStringFromClass([aspectInfo.instance <span style="color:#ff79c6">class</span>]));
+    } <span style="color:#8be9fd;font-style:italic">error</span>:<span style="color:#8be9fd;font-style:italic">NULL</span>];
+</code></pre></div><p>与上一段代码的微小差别是Selector换成了NSSelectorFromString(@&ldquo;dealloc&rdquo;)，而不是@selector(dealloc)，这是因为在ARC下面是不能直接手动调用Dealloc的，@selector(dealloc)会被编译器直接报错。</p>
 <p>通过这个log，我们可以知道ViewController是否释放，如果没有释放很可能就是有循环引用，这时你务必仔细检查你的代码，这在性能调试和debug中非常有用。</p>
 <h4 id="aop实战">AOP实战</h4>
 <p>在实际的项目开发中，事件统计是很多APP都会添加一项重要功能，它能统计用户的行为、商品的销售状况、商品查看数据等，今天的AOP实战是利用AOP实现APP事件统计。</p>
 <h5 id="这样统计">这样统计？</h5>
 <p>假设产品有这么个需求：当用户在详情页点击添加到购物车按钮时，记录一下事件。我们实现起来大概会是这样</p>
-<pre tabindex="0"><code>- (void)onBuyButtonClicked:(id)sender
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">- (<span style="color:#8be9fd">void</span>)<span style="color:#50fa7b">onBuyButtonClicked:</span>(<span style="color:#8be9fd">id</span>)<span style="color:#8be9fd;font-style:italic">sender</span>
 {
-    [XXXAnalytics track:eventName properties:properties];
+    [XXXAnalytics <span style="color:#8be9fd;font-style:italic">track</span>:eventName <span style="color:#8be9fd;font-style:italic">properties</span>:properties];
 }
-</code></pre><p>这个需求就这样轻松搞定了，但细细想想还是有不少问题的：</p>
+</code></pre></div><p>这个需求就这样轻松搞定了，但细细想想还是有不少问题的：</p>
 <ul>
 <li>页面上会有其他的 Button，可能每个 Button 都要放上这么一段代码。</li>
 <li>这些统计其实跟具体的业务无关，没必要跟业务代码混杂在一起，不优雅。</li>
@@ -277,24 +277,24 @@
 </ul>
 <h5 id="使用aop实现统计">使用AOP实现统计</h5>
 <p>基于上面的问题，需要将事件统计这段代码抽离，与具体点击事件逻辑代码解耦。通过AOP在运行时将事件统计的代码加入到方法中正是这个问题的最佳解。代码大概如下：</p>
-<pre tabindex="0"><code>[PBAGoodsDetailViewController aspect_hookSelector:@selector(onBuyButtonClicked:) withOptions:AspectPositionAfter usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) {
-        [XXXAnalytics track:eventName properties:properties];
-    } error:NULL];
-</code></pre><h6 id="多个事件">多个事件？</h6>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">[PBAGoodsDetailViewController <span style="color:#8be9fd;font-style:italic">aspect_hookSelector</span>:<span style="color:#ff79c6">@selector</span>(<span style="color:#8be9fd;font-style:italic">onBuyButtonClicked</span>:) <span style="color:#8be9fd;font-style:italic">withOptions</span>:AspectPositionAfter <span style="color:#8be9fd;font-style:italic">usingBlock</span>:<span style="color:#ff79c6">^</span>(<span style="color:#8be9fd">id</span><span style="color:#ff79c6">&lt;</span>AspectInfo<span style="color:#ff79c6">&gt;</span> aspectInfo) {
+        [XXXAnalytics <span style="color:#8be9fd;font-style:italic">track</span>:eventName <span style="color:#8be9fd;font-style:italic">properties</span>:properties];
+    } <span style="color:#8be9fd;font-style:italic">error</span>:<span style="color:#8be9fd;font-style:italic">NULL</span>];
+</code></pre></div><h6 id="多个事件">多个事件？</h6>
 <p>当然事件统计往往需要统计多个事件，这时我们只要对该方法稍微抽象一下就可以了，代码如下：</p>
-<pre tabindex="0"><code>- (void)setupAnalytics
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">- (<span style="color:#8be9fd">void</span>)<span style="color:#50fa7b">setupAnalytics</span>
 {
-    [self trackEventWithClass:aViewController selector:@seletor(onBuyButtonTapped:) event:kSomeEventYouDefined];
-    [self trackEventWithClass:bViewController selector:@seletor(followButtonTapped:) event:kAnotherEventYouDefined];
-    // ...
-}
-- (void)trackEventWithClass:(Class)klass selector:(SEL)selector event:(NSString *)event
+    [<span style="color:#8be9fd;font-style:italic">self</span> <span style="color:#8be9fd;font-style:italic">trackEventWithClass</span>:aViewController <span style="color:#8be9fd;font-style:italic">selector</span>:@seletor(<span style="color:#8be9fd;font-style:italic">onBuyButtonTapped</span>:) <span style="color:#8be9fd;font-style:italic">event</span>:kSomeEventYouDefined];
+    [<span style="color:#8be9fd;font-style:italic">self</span> <span style="color:#8be9fd;font-style:italic">trackEventWithClass</span>:bViewController <span style="color:#8be9fd;font-style:italic">selector</span>:@seletor(<span style="color:#8be9fd;font-style:italic">followButtonTapped</span>:) <span style="color:#8be9fd;font-style:italic">event</span>:kAnotherEventYouDefined];
+    <span style="color:#6272a4">// ...
+</span><span style="color:#6272a4"></span>}
+- (<span style="color:#8be9fd">void</span>)<span style="color:#50fa7b">trackEventWithClass:</span>(<span style="color:#8be9fd">Class</span>)<span style="color:#8be9fd;font-style:italic">klass</span> <span style="color:#50fa7b">selector:</span>(<span style="color:#8be9fd">SEL</span>)<span style="color:#8be9fd;font-style:italic">selector</span> <span style="color:#50fa7b">event:</span>(NSString <span style="color:#ff79c6">*</span>)<span style="color:#8be9fd;font-style:italic">event</span>
 {
-[klass aspect_hookSelector:@selector(selector) withOptions:AspectPositionAfter usingBlock:^(id&lt;AspectInfo&gt; aspectInfo) {
-    [XXXAnalytics track:eventName properties:properties];
-    } error:NULL];
+[klass <span style="color:#8be9fd;font-style:italic">aspect_hookSelector</span>:<span style="color:#ff79c6">@selector</span>(selector) <span style="color:#8be9fd;font-style:italic">withOptions</span>:AspectPositionAfter <span style="color:#8be9fd;font-style:italic">usingBlock</span>:<span style="color:#ff79c6">^</span>(<span style="color:#8be9fd">id</span><span style="color:#ff79c6">&lt;</span>AspectInfo<span style="color:#ff79c6">&gt;</span> aspectInfo) {
+    [XXXAnalytics <span style="color:#8be9fd;font-style:italic">track</span>:eventName <span style="color:#8be9fd;font-style:italic">properties</span>:properties];
+    } <span style="color:#8be9fd;font-style:italic">error</span>:<span style="color:#8be9fd;font-style:italic">NULL</span>];
 }
-</code></pre><h6 id="使用plist文件配置事件统计">使用plist文件配置事件统计</h6>
+</code></pre></div><h6 id="使用plist文件配置事件统计">使用plist文件配置事件统计</h6>
 <p>当事件非常多时，你的setupAnalytics方法将会变得越来越长，而且不好维护。如果我们可以利用一张表格来配置事件统计，看起来会更加直观简洁。
 使用Xcode创建一个plist文件，其文件结构如图：
 
@@ -303,34 +303,34 @@
 
 使用类名作为字典的键，值为一个数组，数组内存放该类下的事件列表，每个事件包含事件ID(EventId)和触发事件的方法名称（MethodName）。
 在AppDelegate.m中，添加事件统计的代码如下：</p>
-<pre tabindex="0"><code>- (void)setupAnalytics
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">- (<span style="color:#8be9fd">void</span>)<span style="color:#50fa7b">setupAnalytics</span>
 {
-    //设置事件统计
-    //放到异步线程去执行
-    __weak typeof(self) ws = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //读取配置文件，获取需要统计的事件列表
-        NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;EventList&quot; ofType:@&quot;plist&quot;];
-        NSDictionary *eventStatisticsDict = [[NSDictionary alloc] initWithContentsOfFile:path];
-        for (NSString *classNameString in eventStatisticsDict.allKeys) {
-            //使用运行时创建类对象
-            const char * className = [classNameString UTF8String];
-            //从一个字串返回一个类
-            Class newClass = objc_getClass(className);
-            NSArray *pageEventList = [eventStatisticsDict objectForKey:classNameString];
-            for (NSDictionary *eventDict in pageEventList) {
-                //事件方法名称
-                NSString *eventMethodName = eventDict[@&quot;MethodName&quot;];
-                SEL seletor = NSSelectorFromString(eventMethodName);
+    <span style="color:#6272a4">//设置事件统计
+</span><span style="color:#6272a4"></span>    <span style="color:#6272a4">//放到异步线程去执行
+</span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">__weak</span> <span style="color:#ff79c6">typeof</span>(<span style="color:#8be9fd;font-style:italic">self</span>) ws <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">self</span>;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span style="color:#bd93f9">0</span>), <span style="color:#ff79c6">^</span>{
+        <span style="color:#6272a4">//读取配置文件，获取需要统计的事件列表
+</span><span style="color:#6272a4"></span>        NSString <span style="color:#ff79c6">*</span>path <span style="color:#ff79c6">=</span> [[NSBundle mainBundle] <span style="color:#8be9fd;font-style:italic">pathForResource</span>:<span style="color:#f1fa8c">@&#34;EventList&#34;</span> <span style="color:#8be9fd;font-style:italic">ofType</span>:<span style="color:#f1fa8c">@&#34;plist&#34;</span>];
+        NSDictionary <span style="color:#ff79c6">*</span>eventStatisticsDict <span style="color:#ff79c6">=</span> [[NSDictionary alloc] <span style="color:#8be9fd;font-style:italic">initWithContentsOfFile</span>:path];
+        <span style="color:#ff79c6">for</span> (NSString <span style="color:#ff79c6">*</span>classNameString <span style="color:#ff79c6">in</span> eventStatisticsDict.allKeys) {
+            <span style="color:#6272a4">//使用运行时创建类对象
+</span><span style="color:#6272a4"></span>            <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span> className <span style="color:#ff79c6">=</span> [classNameString UTF8String];
+            <span style="color:#6272a4">//从一个字串返回一个类
+</span><span style="color:#6272a4"></span>            <span style="color:#8be9fd">Class</span> newClass <span style="color:#ff79c6">=</span> objc_getClass(className);
+            NSArray <span style="color:#ff79c6">*</span>pageEventList <span style="color:#ff79c6">=</span> [eventStatisticsDict <span style="color:#8be9fd;font-style:italic">objectForKey</span>:classNameString];
+            <span style="color:#ff79c6">for</span> (NSDictionary <span style="color:#ff79c6">*</span>eventDict <span style="color:#ff79c6">in</span> pageEventList) {
+                <span style="color:#6272a4">//事件方法名称
+</span><span style="color:#6272a4"></span>                NSString <span style="color:#ff79c6">*</span>eventMethodName <span style="color:#ff79c6">=</span> eventDict[<span style="color:#f1fa8c">@&#34;MethodName&#34;</span>];
+                <span style="color:#8be9fd">SEL</span> seletor <span style="color:#ff79c6">=</span> NSSelectorFromString(eventMethodName);
 
-                NSString *eventId = eventDict[@&quot;EventId&quot;];
+                NSString <span style="color:#ff79c6">*</span>eventId <span style="color:#ff79c6">=</span> eventDict[<span style="color:#f1fa8c">@&#34;EventId&#34;</span>];
 
-                [self trackEventWithClass:newClass selector:seletor event:eventId];
+                [<span style="color:#8be9fd;font-style:italic">self</span> <span style="color:#8be9fd;font-style:italic">trackEventWithClass</span>:newClass <span style="color:#8be9fd;font-style:italic">selector</span>:seletor <span style="color:#8be9fd;font-style:italic">event</span>:eventId];
             }
         }
     });
 }
-</code></pre><p>至此，一切好像都好像完美了，但人生总是充满了变数。</p>
+</code></pre></div><p>至此，一切好像都好像完美了，但人生总是充满了变数。</p>
 <h6 id="事件需要传递参数">事件需要传递参数</h6>
 <p>一个阳光明媚的上午，产品跑过来和我说事件统计需要传递一些参数，比如点击查看商品详情事件需要传递商品ID和商品名称。我当时心中就一万只草泥马在奔腾，但是没办法呀！我们只是搬砖的程序猿，只能低头默默的改。好不容易设计好的架构，眼看就要打回原形。后来仔细研究一番发现，其实Aspects是可以通过Block获取到方法传递的参数的，马上心情好了许多，修改思路马上再脑海形成。</p>
 <p>首先，将Block改为<code>^(id&lt;AspectInfo&gt; aspectInfo, NSDictionary *dict)</code>，第一个参数一定要为<code>id&lt;AspectInfo&gt; aspectInfo</code>,后面接方法传递的对应类型的参数，这样便可以接收到方法调用传递的参数。但是每一个事件需要传递的参数都各不相同，那我们要如何配置呢？
@@ -340,73 +340,73 @@
 
 
 统计代码：</p>
-<pre tabindex="0"><code>- (void)setupAnalytics
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">- (<span style="color:#8be9fd">void</span>)<span style="color:#50fa7b">setupAnalytics</span>
 {
-    //设置事件统计
-    //放到异步线程去执行
-    __weak typeof(self) ws = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //读取配置文件，获取需要统计的事件列表
-        NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;EventList&quot; ofType:@&quot;plist&quot;];
-        NSDictionary *eventStatisticsDict = [[NSDictionary alloc] initWithContentsOfFile:path];
-        for (NSString *classNameString in eventStatisticsDict.allKeys) {
-            //使用运行时创建类对象
-            const char * className = [classNameString UTF8String];
-            //从一个字串返回一个类
-            Class newClass = objc_getClass(className);
-            NSArray *pageEventList = [eventStatisticsDict objectForKey:classNameString];
-            for (NSDictionary *eventDict in pageEventList) {
-                //事件方法名称
-                NSString *eventMethodName = eventDict[@&quot;MethodName&quot;];
-                SEL seletor = NSSelectorFromString(eventMethodName);
-                NSString *eventId = eventDict[@&quot;EventId&quot;];
-                NSArray *params = eventDict[@&quot;Params&quot;];
-                [self trackEventWithClass:newClass selector:seletor event:eventId params:params];
+    <span style="color:#6272a4">//设置事件统计
+</span><span style="color:#6272a4"></span>    <span style="color:#6272a4">//放到异步线程去执行
+</span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">__weak</span> <span style="color:#ff79c6">typeof</span>(<span style="color:#8be9fd;font-style:italic">self</span>) ws <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">self</span>;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span style="color:#bd93f9">0</span>), <span style="color:#ff79c6">^</span>{
+        <span style="color:#6272a4">//读取配置文件，获取需要统计的事件列表
+</span><span style="color:#6272a4"></span>        NSString <span style="color:#ff79c6">*</span>path <span style="color:#ff79c6">=</span> [[NSBundle mainBundle] <span style="color:#8be9fd;font-style:italic">pathForResource</span>:<span style="color:#f1fa8c">@&#34;EventList&#34;</span> <span style="color:#8be9fd;font-style:italic">ofType</span>:<span style="color:#f1fa8c">@&#34;plist&#34;</span>];
+        NSDictionary <span style="color:#ff79c6">*</span>eventStatisticsDict <span style="color:#ff79c6">=</span> [[NSDictionary alloc] <span style="color:#8be9fd;font-style:italic">initWithContentsOfFile</span>:path];
+        <span style="color:#ff79c6">for</span> (NSString <span style="color:#ff79c6">*</span>classNameString <span style="color:#ff79c6">in</span> eventStatisticsDict.allKeys) {
+            <span style="color:#6272a4">//使用运行时创建类对象
+</span><span style="color:#6272a4"></span>            <span style="color:#ff79c6">const</span> <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span> className <span style="color:#ff79c6">=</span> [classNameString UTF8String];
+            <span style="color:#6272a4">//从一个字串返回一个类
+</span><span style="color:#6272a4"></span>            <span style="color:#8be9fd">Class</span> newClass <span style="color:#ff79c6">=</span> objc_getClass(className);
+            NSArray <span style="color:#ff79c6">*</span>pageEventList <span style="color:#ff79c6">=</span> [eventStatisticsDict <span style="color:#8be9fd;font-style:italic">objectForKey</span>:classNameString];
+            <span style="color:#ff79c6">for</span> (NSDictionary <span style="color:#ff79c6">*</span>eventDict <span style="color:#ff79c6">in</span> pageEventList) {
+                <span style="color:#6272a4">//事件方法名称
+</span><span style="color:#6272a4"></span>                NSString <span style="color:#ff79c6">*</span>eventMethodName <span style="color:#ff79c6">=</span> eventDict[<span style="color:#f1fa8c">@&#34;MethodName&#34;</span>];
+                <span style="color:#8be9fd">SEL</span> seletor <span style="color:#ff79c6">=</span> NSSelectorFromString(eventMethodName);
+                NSString <span style="color:#ff79c6">*</span>eventId <span style="color:#ff79c6">=</span> eventDict[<span style="color:#f1fa8c">@&#34;EventId&#34;</span>];
+                NSArray <span style="color:#ff79c6">*</span>params <span style="color:#ff79c6">=</span> eventDict[<span style="color:#f1fa8c">@&#34;Params&#34;</span>];
+                [<span style="color:#8be9fd;font-style:italic">self</span> <span style="color:#8be9fd;font-style:italic">trackEventWithClass</span>:newClass <span style="color:#8be9fd;font-style:italic">selector</span>:seletor <span style="color:#8be9fd;font-style:italic">event</span>:eventId <span style="color:#8be9fd;font-style:italic">params</span>:params];
             }
         }
     });
 }
-</code></pre><p>统计方法：</p>
-<pre tabindex="0"><code>- (void)trackEventWithClass:(Class)klass selector:(SEL)selector event:(NSString *)event params:(NSArray *)paramNames
+</code></pre></div><p>统计方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">- (<span style="color:#8be9fd">void</span>)<span style="color:#50fa7b">trackEventWithClass:</span>(<span style="color:#8be9fd">Class</span>)<span style="color:#8be9fd;font-style:italic">klass</span> <span style="color:#50fa7b">selector:</span>(<span style="color:#8be9fd">SEL</span>)<span style="color:#8be9fd;font-style:italic">selector</span> <span style="color:#50fa7b">event:</span>(NSString <span style="color:#ff79c6">*</span>)<span style="color:#8be9fd;font-style:italic">event</span> <span style="color:#50fa7b">params:</span>(NSArray <span style="color:#ff79c6">*</span>)<span style="color:#8be9fd;font-style:italic">paramNames</span>
 {
-    [klass aspect_hookSelector:@selector(selector) withOptions:AspectPositionAfter usingBlock:^(id&lt;AspectInfo&gt; aspectInfo, NSDictionary *dict) {
-        //定义与事件相关的属性信息
-        NSMutableDictionary *properties = [NSMutableDictionary dictionary];
-        //如果有参数，那么把参数名和参数值拼接在eventID之后
-        if (paramNames.count &gt; 0) {
-            if ([dict isKindOfClass:[NSDictionary class]]) {
-                //获取dict
-                for (NSString *paramName in paramNames) {
-                    //添加所需参数
-                    NSString *paramValue = [dict objectForKey:paramName];
-                    properties[paramName] = paramValue;
+    [klass <span style="color:#8be9fd;font-style:italic">aspect_hookSelector</span>:<span style="color:#ff79c6">@selector</span>(selector) <span style="color:#8be9fd;font-style:italic">withOptions</span>:AspectPositionAfter <span style="color:#8be9fd;font-style:italic">usingBlock</span>:<span style="color:#ff79c6">^</span>(<span style="color:#8be9fd">id</span><span style="color:#ff79c6">&lt;</span>AspectInfo<span style="color:#ff79c6">&gt;</span> aspectInfo, NSDictionary <span style="color:#ff79c6">*</span>dict) {
+        <span style="color:#6272a4">//定义与事件相关的属性信息
+</span><span style="color:#6272a4"></span>        NSMutableDictionary <span style="color:#ff79c6">*</span>properties <span style="color:#ff79c6">=</span> [NSMutableDictionary dictionary];
+        <span style="color:#6272a4">//如果有参数，那么把参数名和参数值拼接在eventID之后
+</span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span> (paramNames.count <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>) {
+            <span style="color:#ff79c6">if</span> ([dict <span style="color:#8be9fd;font-style:italic">isKindOfClass</span>:[NSDictionary <span style="color:#ff79c6">class</span>]]) {
+                <span style="color:#6272a4">//获取dict
+</span><span style="color:#6272a4"></span>                <span style="color:#ff79c6">for</span> (NSString <span style="color:#ff79c6">*</span>paramName <span style="color:#ff79c6">in</span> paramNames) {
+                    <span style="color:#6272a4">//添加所需参数
+</span><span style="color:#6272a4"></span>                    NSString <span style="color:#ff79c6">*</span>paramValue <span style="color:#ff79c6">=</span> [dict <span style="color:#8be9fd;font-style:italic">objectForKey</span>:paramName];
+                    properties[paramName] <span style="color:#ff79c6">=</span> paramValue;
                 }
             }
         }
 
-        [XXXAnalytics track:eventName properties:properties];
-    } error:NULL];
+        [XXXAnalytics <span style="color:#8be9fd;font-style:italic">track</span>:eventName <span style="color:#8be9fd;font-style:italic">properties</span>:properties];
+    } <span style="color:#8be9fd;font-style:italic">error</span>:<span style="color:#8be9fd;font-style:italic">NULL</span>];
 }
-</code></pre><p>将需要传递的参数以字典格式作为方法的第一个参数，Params中配置事件统计需要传递的参数的Key，通过此方法可以传递任何我们需要传递的参数，使用plist快速、灵活配置需要传递的参数。实战内容到此基本结束，我们使用AOP已经实现了一个低耦合、可灵活配置的事件统计。</p>
+</code></pre></div><p>将需要传递的参数以字典格式作为方法的第一个参数，Params中配置事件统计需要传递的参数的Key，通过此方法可以传递任何我们需要传递的参数，使用plist快速、灵活配置需要传递的参数。实战内容到此基本结束，我们使用AOP已经实现了一个低耦合、可灵活配置的事件统计。</p>
 <h4 id="还有一些挑战">还有一些挑战</h4>
 <p>在使用Aspects中我发现，如果方法为类方法时，并不会回调block。在调用aspect_hookSelector:withOptions:usingBlock:时，报<code>Aspects: Block signature &lt;NSMethodSignature: 0x7fa13345ce60&gt; doesn't match (null).</code>错误提示，意思是block不匹配，其根本原因在于无法使用Class获取该Class的类方法，通过runtime只能获取到成员方法，而类方法需要使用该Class的MetaClass获取，MateClass可以使用<code>object_getClass(newClass)</code>得到。代码如下：</p>
-<pre tabindex="0"><code>[ws trackEventWithClass:object_getClass(newClass) selector:seletor event:eventId params:params];
-</code></pre><p>修改后虽然不会报错，但是依然不会触发block。查看Aspects的github介绍发现，Aspects压根就不支持类方法，这让我很是苦恼。不过按道理应该是可以的，于是和同事讨论了一下，就使用Method Swizzling做了交换两个类方法的试验，结果是成功了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c">[ws <span style="color:#8be9fd;font-style:italic">trackEventWithClass</span>:object_getClass(newClass) <span style="color:#8be9fd;font-style:italic">selector</span>:seletor <span style="color:#8be9fd;font-style:italic">event</span>:eventId <span style="color:#8be9fd;font-style:italic">params</span>:params];
+</code></pre></div><p>修改后虽然不会报错，但是依然不会触发block。查看Aspects的github介绍发现，Aspects压根就不支持类方法，这让我很是苦恼。不过按道理应该是可以的，于是和同事讨论了一下，就使用Method Swizzling做了交换两个类方法的试验，结果是成功了。</p>
 <p>查看Aspects的源代码发现，Aspects交换的是成员方法。无奈最后只能修改Aspects的源代码，我在其中一方法中加入了Class类型判断，如果是MetaClass，那么就初始化为类方法，而非成员方法。代码如下：</p>
-<pre tabindex="0"><code>static void aspect_prepareClassAndHookSelector(NSObject *self, SEL selector, NSError **error) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objective-c" data-lang="objective-c"><span style="color:#ff79c6">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">aspect_prepareClassAndHookSelector</span>(NSObject <span style="color:#ff79c6">*</span><span style="color:#8be9fd;font-style:italic">self</span>, <span style="color:#8be9fd">SEL</span> selector, NSError <span style="color:#ff79c6">**</span>error) {
     NSCParameterAssert(selector);
-    Class klass = aspect_hookClass(self, error);
-    //TODO:Edit bu JackYong
-    Method targetMethod;
-    IMP targetMethodIMP;
-    if (class_isMetaClass(klass)) {
-        targetMethod = class_getClassMethod(klass, selector);
-        targetMethodIMP = method_getImplementation(targetMethod);
-    } else {
-        targetMethod = class_getInstanceMethod(klass, selector);
-        targetMethodIMP = method_getImplementation(targetMethod);
+    <span style="color:#8be9fd">Class</span> klass <span style="color:#ff79c6">=</span> aspect_hookClass(<span style="color:#8be9fd;font-style:italic">self</span>, error);
+    <span style="color:#6272a4">//TODO:Edit bu JackYong
+</span><span style="color:#6272a4"></span>    Method targetMethod;
+    <span style="color:#8be9fd">IMP</span> targetMethodIMP;
+    <span style="color:#ff79c6">if</span> (class_isMetaClass(klass)) {
+        targetMethod <span style="color:#ff79c6">=</span> class_getClassMethod(klass, selector);
+        targetMethodIMP <span style="color:#ff79c6">=</span> method_getImplementation(targetMethod);
+    } <span style="color:#ff79c6">else</span> {
+        targetMethod <span style="color:#ff79c6">=</span> class_getInstanceMethod(klass, selector);
+        targetMethodIMP <span style="color:#ff79c6">=</span> method_getImplementation(targetMethod);
     }
-</code></pre><p>修改后block和往常一样被调用了。暂时使用没有遇到什么问题，不过目测应该是有bug的，不然Aspects的开发者早就加了这判断。
+</code></pre></div><p>修改后block和往常一样被调用了。暂时使用没有遇到什么问题，不过目测应该是有bug的，不然Aspects的开发者早就加了这判断。
 Demo：https://github.com/yongca887/AOPDemo</p>
 <h5 id="aspects的坑">Aspects的坑</h5>
 <ul>
