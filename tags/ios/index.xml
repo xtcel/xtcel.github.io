@@ -6,7 +6,25 @@
     <description>Recent content in iOS on XTCEL Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 Jul 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://xtcel.github.io/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Dec 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://xtcel.github.io/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Swfit 封装微信支付 &amp; 支付宝支付 SSPayManager</title>
+      <link>https://xtcel.github.io/post/swfit%E5%B0%81%E8%A3%85%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%92%8C%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98/</link>
+      <pubDate>Sat, 30 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/post/swfit%E5%B0%81%E8%A3%85%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%92%8C%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98/</guid>
+      <description>SSPayManager iOS Swfit封装微信支付&amp;amp;支付宝支付 简单的封装两大支付平台，带有示例Demo，快速在Swfit项目中使用。 BasePayManager 支付协议基类 /** * 使用已</description>
+    </item>
+    
+    <item>
+      <title>UIButton 设置 title 文字时闪动</title>
+      <link>https://xtcel.github.io/post/uibutton%E8%AE%BE%E7%BD%AEtitle%E6%96%87%E5%AD%97%E6%97%B6%E9%97%AA%E5%8A%A8/</link>
+      <pubDate>Fri, 22 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/post/uibutton%E8%AE%BE%E7%BD%AEtitle%E6%96%87%E5%AD%97%E6%97%B6%E9%97%AA%E5%8A%A8/</guid>
+      <description>UIButton-system类型 动态设置title文字时闪动 解决方案： self.sendCodeButton.titleLabel?.text = &amp;#34;\(self.remainCount)s重新发送&amp;#3</description>
+    </item>
+    
     <item>
       <title>iOS面向切面编程AOP实践</title>
       <link>https://xtcel.github.io/post/ios%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8Baop%E5%AE%9E%E8%B7%B5/</link>

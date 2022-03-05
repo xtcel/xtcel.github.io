@@ -44,6 +44,33 @@
     </item>
     
     <item>
+      <title>iOS</title>
+      <link>https://xtcel.github.io/tags/ios/</link>
+      <pubDate>Sat, 30 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Swfit</title>
+      <link>https://xtcel.github.io/tags/swfit/</link>
+      <pubDate>Sat, 30 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/tags/swfit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>UIButton</title>
+      <link>https://xtcel.github.io/tags/uibutton/</link>
+      <pubDate>Fri, 22 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/tags/uibutton/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Mac</title>
       <link>https://xtcel.github.io/tags/mac/</link>
       <pubDate>Wed, 06 Dec 2017 00:00:00 +0000</pubDate>
@@ -94,15 +121,6 @@
       <pubDate>Wed, 13 Jul 2016 00:00:00 +0000</pubDate>
       
       <guid>https://xtcel.github.io/tags/aop/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>iOS</title>
-      <link>https://xtcel.github.io/tags/ios/</link>
-      <pubDate>Wed, 13 Jul 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://xtcel.github.io/tags/ios/</guid>
       <description></description>
     </item>
     
@@ -256,6 +274,15 @@
       <pubDate>Tue, 28 Oct 2014 00:00:00 +0000</pubDate>
       
       <guid>https://xtcel.github.io/tags/%E5%8A%A0%E5%AF%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://xtcel.github.io/tags/linux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/tags/linux/</guid>
       <description></description>
     </item>
     

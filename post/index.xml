@@ -17,6 +17,24 @@
     </item>
     
     <item>
+      <title>Swfit 封装微信支付 &amp; 支付宝支付 SSPayManager</title>
+      <link>https://xtcel.github.io/post/swfit%E5%B0%81%E8%A3%85%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%92%8C%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98/</link>
+      <pubDate>Sat, 30 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/post/swfit%E5%B0%81%E8%A3%85%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%92%8C%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98/</guid>
+      <description>SSPayManager iOS Swfit封装微信支付&amp;amp;支付宝支付 简单的封装两大支付平台，带有示例Demo，快速在Swfit项目中使用。 BasePayManager 支付协议基类 /** * 使用已</description>
+    </item>
+    
+    <item>
+      <title>UIButton 设置 title 文字时闪动</title>
+      <link>https://xtcel.github.io/post/uibutton%E8%AE%BE%E7%BD%AEtitle%E6%96%87%E5%AD%97%E6%97%B6%E9%97%AA%E5%8A%A8/</link>
+      <pubDate>Fri, 22 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/post/uibutton%E8%AE%BE%E7%BD%AEtitle%E6%96%87%E5%AD%97%E6%97%B6%E9%97%AA%E5%8A%A8/</guid>
+      <description>UIButton-system类型 动态设置title文字时闪动 解决方案： self.sendCodeButton.titleLabel?.text = &amp;#34;\(self.remainCount)s重新发送&amp;#3</description>
+    </item>
+    
+    <item>
       <title>Mac更新Ruby报错</title>
       <link>https://xtcel.github.io/post/mac-update-ruby-error/</link>
       <pubDate>Wed, 06 Dec 2017 00:00:00 +0000</pubDate>
@@ -122,6 +140,15 @@
       
       <guid>https://xtcel.github.io/post/ios%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</guid>
       <description>在iOS的项目中，我们经常会用到加密技术，比如说在登录的时候，我们会先把密码用MD5加密再传输给服务器或者直接对所有的参数进行加密再Post</description>
+    </item>
+    
+    <item>
+      <title>Linux查找大文件并清理</title>
+      <link>https://xtcel.github.io/post/linux%E6%9F%A5%E6%89%BE%E5%A4%A7%E6%96%87%E4%BB%B6%E5%B9%B6%E6%B8%85%E7%90%86/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/post/linux%E6%9F%A5%E6%89%BE%E5%A4%A7%E6%96%87%E4%BB%B6%E5%B9%B6%E6%B8%85%E7%90%86/</guid>
+      <description>发现问题 测试服后台突然打不开，查看log上面写着文件写入失败，以为是目录权限问题，修改权限后还是不行。（之前因为权限问题，不能写入，修改权限</description>
     </item>
     
   </channel>
