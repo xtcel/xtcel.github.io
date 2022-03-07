@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XTCEL Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://xtcel.github.io/https://qn.xtcel.com/bg/home-bg-ocean.jpg">
+    <meta property="twitter:image" content="https://xtcel.github.io/https://qn.xtcel.com/bg/home-bg-ocean.jpg" />
+    
+
+    
+    <meta name="title" content="CentOS 6.5 配置iptables防火墙策略" />
+    <meta property="og:title" content="CentOS 6.5 配置iptables防火墙策略" />
+    <meta property="twitter:title" content="CentOS 6.5 配置iptables防火墙策略" />
+    
+
+    
+    <meta name="description" content="张勇, 程序员, 开源爱好者，生活探险家 | 这里是 程序员张同学 的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="张勇, 程序员, 开源爱好者，生活探险家 | 这里是 程序员张同学 的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="张勇, 程序员, 开源爱好者，生活探险家 | 这里是 程序员张同学 的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="张勇, Xtcel, xtcel, , 张勇的网络日志, 赵化冰的博客, XTCEL Blog, 博客, 个人网站, 互联网, Web, 移动端开发, iOS, Android, Flutter, Electron, Tauri, Rust, 微服务,">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>CentOS 6.5 配置iptables防火墙策略-张勇的博客 | XTCEL Blog</title>
+
+    <link rel="canonical" href="/post/centos6.5%E9%85%8D%E7%BD%AEiptables%E9%98%B2%E7%81%AB%E5%A2%99%E7%AD%96%E7%95%A5/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">XTCEL Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/ios">ios</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/tech">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/books/">BOOKS</a></li>
+                    
+                        <li><a href="/top/archive/">ARCHIVE</a></li>
+                    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+		    <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://qn.xtcel.com/bg/home-bg-ocean.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/centos" title="CentOS">
+                            CentOS
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE" title="防火墙配置">
+                            防火墙配置
+                        </a>
+                        
+                    </div>
+                    <h1>CentOS 6.5 配置iptables防火墙策略</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                xtcel
+                             
+                            on 
+                            Saturday, December 30, 2017
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h4 id="配置filter表防火墙">配置filter表防火墙</h4>
+<p>清除预设表filter中的所有规则链的规则</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> iptables -F
+</code></pre></div><p>清除预设表filter中使用者自定链中的规则</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">iptables -X
+</code></pre></div><p>保存iptables配置</p>
+<pre tabindex="0"><code>service iptables save
+</code></pre><p>重启iptables服务</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">service iptables restart
+</code></pre></div><p>查看iptables规则</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">iptables -L -n
+</code></pre></div><p>查看iptables规则文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cat /etc/sysconfig/iptables
+</code></pre></div><p>设定预设规则</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">iptables -P INPUT DROP
+iptables -P OUTPUT ACCEPT
+iptables -P FORWARD DROP
+</code></pre></div><p>开启22端口</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">iptables -A INPUT -p tcp --dport <span style="color:#bd93f9">22</span> -j ACCEPT
+</code></pre></div><p>如果OUTPUT设置成DROP需要添加</p>
+<p><code>iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT</code>
+关闭22端口</p>
+<p><code>iptables -D INPUT -p tcp --dport 22 -j ACCEPT</code>
+开启常用端口</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">iptables -A INPUT -p tcp --dport <span style="color:#bd93f9">80</span> -j ACCEPT
+iptables -A INPUT -p tcp --dport <span style="color:#bd93f9">3306</span> -j ACCEPT
+iptables -A OUTPUT -p tcp --sport <span style="color:#bd93f9">80</span> -j ACCEPT
+iptables -A OUTPUT -p tcp --sport <span style="color:#bd93f9">3306</span> -j ACCEPT
+iptables -A INPUT -p tcp --dport <span style="color:#bd93f9">20</span> -j ACCEPT
+iptables -A INPUT -p tcp --dport <span style="color:#bd93f9">21</span> -j ACCEPT
+iptables -A INPUT -p tcp --dport <span style="color:#bd93f9">10000</span> -j ACCEPT
+iptables -A INPUT -p tcp --dport <span style="color:#bd93f9">25</span> -j ACCEPT
+iptables -A INPUT -p tcp --dport <span style="color:#bd93f9">110</span> -j ACCEPT
+iptables -A INPUT -p udp --dport <span style="color:#bd93f9">53</span> -j ACCEPT
+</code></pre></div><p>允许ping</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">iptables -A INPUT -p icmp -j ACCEPT
+</code></pre></div><p>如果OUTPUT设置成DROP需要添加 <code>iptables -A OUTPUT -p icmp -j ACCEPT</code>
+允许loopback
+<code>iptables -A INPUT -i lo -p all -j ACCEPT</code>
+如果OUTPUT设置成DROP需要添加 <code>iptables -A OUTPUT -o lo -p all -j ACCEPT</code>
+屏蔽指定ip
+<code> iptables -A INPUT -p tcp -s 192.168.10.1 -j DROP</code>
+减少不安全的端口连接
+<code>iptables -A OUTPUT -p tcp --sport 31337 -j DROP iptables -A OUTPUT -p tcp --dport 31337 -j DROP</code>
+允许某个IP远程连接
+<code> iptables -A INPUT -s 192.168.10.1 -p tcp --dport 22 -j ACCEPT</code></p>
+<p>允许某个网段的IP远程连接
+iptables -A INPUT -s 192.168.10.0/24 -p tcp &ndash;dport 22 -j ACCEPT
+允许指定网段通过、指定网口通过SSH连接本机
+iptables -A INPUT -i eth0 -p tcp -s 192.168.10.0/24 &ndash;dport 22 -m state &ndash;state NEW,ESTABLESHED -j ACCEPT
+iptables -A OUTPUT -o eth0 -p tcp &ndash;sport 22 -m state &ndash;state ESTABLISHED -j ACCEPT
+iptables -A INPUT -i eth0 -p tcp -s 192.168.10.0/24 &ndash;dport 22 -m state &ndash;state ESTABLESHED -j ACCEPT
+iptables -A OUTPUT -o eth0 -p tcp &ndash;sport 22 -m state &ndash;state NEW,ESTABLISHED -j ACCEPT
+开启转发功能
+iptables -A FORWARD -i eth0 -o eth1 -m state &ndash;state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i eth1 -o eh0 -j ACCEPT</p>
+<p>丢弃坏的TCP包
+iptables -A FORWARD -p TCP ! &ndash;syn -m state &ndash;state NEW -j DROP
+处理IP碎片数量,防止攻击,允许每秒100个
+iptables -A FORWARD -f -m limit &ndash;limit 100/s &ndash;limit-burst 100 -j ACCEPT
+设置ICMP包过滤,允许每秒1个包,限制触发条件是10个包
+iptables -A FORWARD -p icmp -m limit &ndash;limit 1/s &ndash;limit-burst 10 -j ACCEPT
+丢弃非法连接
+iptables -A INPUT -m state &ndash;state INVALID -j DROP
+iptables -A OUTPUT -m state &ndash;state INVALID -j DROP
+iptables -A FORWARD -m state &ndash;state INVALID -j DROP
+允许所有已经建立的和相关的连接
+iptables -A INPUT -m state &ndash;state ESTABLISHED,RELATED -j ACCEPT
+iptables -A OUTPUT -m state &ndash;state ESTABLISHED,RELATED -j ACCEPT</p>
+<h4 id="配置nat表防火墙">配置NAT表防火墙</h4>
+<p>查看NAT表规则</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">iptables -t nat -L
+</code></pre></div><p>清除NAT规则
+iptables -F -t nat
+iptables -X -t nat
+iptables -Z -t nat
+防止外网用内网IP欺骗   iptables -t nat -A PREROUTING -i eth0 -s 10.0.0.0/8 -j DROP
+iptables -t nat -A PREROUTING -i eth0 -s 172.16.0.0/12 -j DROP
+iptables -t nat -A PREROUTING -i eth0 -s 192.168.0.0/16 -j DROP
+禁止与某个IP的所有连接
+iptables -t nat -A PREROUTING -d 192.168.10.1 -j DROP
+禁用80端口
+iptables -t nat -A PREROUTING -p tcp &ndash;dport 80 -j DROP
+禁用某个IP的80端口
+iptables -t nat -A PREROUTING -p tcp &ndash;dport 21 -d 192.168.10.1 -j DROP</p>
+<h4 id="保存iptables文件重启服务">保存iptables文件，重启服务</h4>
+<p>保存iptables规则</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">service iptables save
+</code></pre></div><p>重启iptables服务</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">service iptables restart
+</code></pre></div>
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/swfit%E5%B0%81%E8%A3%85%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E5%92%8C%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98/" data-toggle="tooltip" data-placement="top" title="Swfit 封装微信支付 &amp; 支付宝支付 SSPayManager">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/centos6.5%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE/" data-toggle="tooltip" data-placement="top" title="CentOS 6.5 防火墙配置">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+<script src="https://giscus.app/client.js"
+        data-repo="xtcel/xtcel.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxMTcyNTM1MjE"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBv0lkc4CN8jv"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/centos" title="centos">
+                            centos
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mac" title="mac">
+                            mac
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E5%B4%A9%E6%BA%83" title="崩溃">
+                            崩溃
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE" title="防火墙配置">
+                            防火墙配置
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="XTCEL Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+                   
+                    
+                    <li>
+                        <a href="mailto:xtcelzhangyong@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    <li>
+                        <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xtcel">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/yourlinkedinid">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/yourstackoverflowid">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+            
+                    
+                    
+                    
+            
+            
+            
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XTCEL Blog 2022
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+</body>
+</html>
