@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="解决MacOS 10.12破解软件崩溃" />
-    <meta property="og:title" content="解决MacOS 10.12破解软件崩溃" />
-    <meta property="twitter:title" content="解决MacOS 10.12破解软件崩溃" />
+    <meta name="title" content="Mac 上使用 Python 修改 .Plist 文件" />
+    <meta property="og:title" content="Mac 上使用 Python 修改 .Plist 文件" />
+    <meta property="twitter:title" content="Mac 上使用 Python 修改 .Plist 文件" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="张勇, Xtcel, xtcel, , 张勇的网络日志, 赵化冰的博客, XTCEL Blog, 博客, 个人网站, 互联网, Web, 移动端开发, iOS, Android, Flutter, Electron, Tauri, Rust, 微服务,">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>解决MacOS 10.12破解软件崩溃-张勇的博客 | XTCEL Blog</title>
+    <title>Mac 上使用 Python 修改 .Plist 文件-张勇的博客 | XTCEL Blog</title>
 
-    <link rel="canonical" href="/post/%E8%A7%A3%E5%86%B3macos10.12%E7%A0%B4%E8%A7%A3%E8%BD%AF%E4%BB%B6%E5%B4%A9%E6%BA%83/">
+    <link rel="canonical" href="/post/mac%E4%B8%8A%E4%BD%BF%E7%94%A8python%E4%BF%AE%E6%94%B9.plist%E6%96%87%E4%BB%B6/">
 
     
     
@@ -177,29 +177,21 @@
                             Mac
                         </a>
                         
-                        <a class="tag" href="/tags/macos10.12" title="macOS10.12">
-                            macOS10.12
-                        </a>
-                        
-                        <a class="tag" href="/tags/%E5%B4%A9%E6%BA%83" title="崩溃">
-                            崩溃
-                        </a>
-                        
-                        <a class="tag" href="/tags/%E7%A0%B4%E8%A7%A3%E8%BD%AF%E4%BB%B6" title="破解软件">
-                            破解软件
+                        <a class="tag" href="/tags/python" title="Python">
+                            Python
                         </a>
                         
                     </div>
-                    <h1>解决MacOS 10.12破解软件崩溃</h1>
+                    <h1>Mac 上使用 Python 修改 .Plist 文件</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
                             Posted by 
                             
-                                     &#34;xtcel&#34;
+                                xtcel
                              
                             on 
-                            Monday, October 17, 2016
+                            Monday, March 5, 2018
                             
                             
                             
@@ -225,43 +217,65 @@
                 post-container">
 
                 
-                <p>不少用户安装macOS 10.12后，安装网上下载的破解软件，打开后竟然出现程序文件被损坏，要求删除应用的提示，看到这个提示大家本能的理解应该是网上下载的第三方程序出问题，文件被损坏，其实这是苹果阻止用户安装破解软件的一项策略，防止苹果盗版软件的盛行。</p>
-<p>
-  <img src="https://s2.loli.net/2022/03/05/CV9cDNAIa3ktziZ.png" alt="APP打不开">
+                <h3 id="起因">起因</h3>
+<p>今天遇到一个需要批量处理写入.Plist文件的需要，一开始想直接手动写入，考虑的内容比较多，手写估计要1个小时，于是想是不是可以用程序员的思维去解决这个问题，怎么解决，写个脚本呗！程序员的天职应该就是偷懒，不会偷懒的程序员不是好程序员。其实之前已经有写过一个类似的脚本，是使用oc写的。使用oc比较自然直接，语言也比较熟悉，但是感觉这么一个小问题，还要创建一个iOS工程太麻烦，而且拷贝文件也很不方便，需要到模拟器的沙盒里面去找文件。</p>
+<p>那用啥呢？首先我想到的便是最近火的不要不要的脚本语言Python，Python非常简单，有很多语法糖，可以快速的构建出强大的功能。</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6272a4">#!/usr/bin/env python</span>
+<span style="color:#6272a4">#coding=utf-8</span>
 
-</p>
-<p>用户可能已经发现，在新版的&quot;安全性与隐私&quot;中已找不到&quot;任何来源&quot;选项，意思是用户只能从AppStore下载或者安装已认证的开发者的程序，从其他网站下载的程序大部分是已经被破解修改重新打包的APP，这些APP的开发者是不受认证的。那么怎么打开任何来源?接来下我就给大家详细讲解.非常简单!</p>
-<p>
-  <img src="https://s2.loli.net/2022/03/05/8pbsGzq1h5lPXE7.png" alt="">
+<span style="color:#ff79c6">import</span> os<span style="color:#ff79c6">,</span>sys
+reload(sys) 
+sys<span style="color:#ff79c6">.</span>setdefaultencoding(<span style="color:#f1fa8c">&#39;utf-8&#39;</span>) 
 
-</p>
-<h4 id="打开终端">打开终端</h4>
-<p>打开终端,如下图:</p>
-<p>
-  <img src="https://s2.loli.net/2022/03/05/gik7Dlu1sqOnWU2.jpg" alt="">
+base <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;/Users/XiaoYao/Desktop/&#39;</span>
 
-</p>
-<h4 id="输出命令">输出命令</h4>
-<p>然后输入以下命令:</p>
-<pre tabindex="0"><code>sudo spctl --master-disable
-</code></pre><p>如下图:
+u <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">u</span><span style="color:#f1fa8c">&#34;抱抱&#34;</span>
 
-  <img src="https://s2.loli.net/2022/03/05/19rOibWLRPD6GCq.png" alt="">
-
-</p>
-<p>输入后回车，sudo命令需要输入电脑的密码，将你的登录密码输入认证就可以了。</p>
-<h4 id="成功啦">成功啦</h4>
-<p>然后再重新打开“安全性与隐私”,已经出现并选中&quot;任何来源&quot;了。</p>
-<p>
-  <img src="https://s2.loli.net/2022/03/05/prX9ztn5QdENluV.png" alt="">
-
-</p>
-<p>再次打开你的APP，已经不会再出现文件损坏的提示。</p>
-<p>
-  <img src="https://s2.loli.net/2022/03/05/wYFUjHq4mg8NBLS.png" alt="">
-
-</p>
-<p>APP正常运行，终于可以继续愉快的玩耍了。继续coding&hellip;.</p>
+<span style="color:#ff79c6">for</span> index <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">25</span>):
+    os<span style="color:#ff79c6">.</span>system(<span style="color:#f1fa8c">&#39;/usr/libexec/PlistBuddy -c &#34;Set :</span><span style="color:#f1fa8c">%s</span><span style="color:#f1fa8c">:</span><span style="color:#f1fa8c">%d</span><span style="color:#f1fa8c"> hug_0</span><span style="color:#f1fa8c">%02d</span><span style="color:#f1fa8c">&#34; BigGiftList.plist&#39;</span><span style="color:#ff79c6">%</span>(u, index, index<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>))
+</code></pre></div><h3 id="心得">心得</h3>
+<h5 id="编码问题">编码问题</h5>
+<p>因为要使用中文字符串，必须在开头加上
+<code>#coding=utf-8</code>
+否则会报错，
+并且需要重载系统默认编码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff79c6">import</span> os<span style="color:#ff79c6">,</span>sys
+reload(sys) 
+sys<span style="color:#ff79c6">.</span>setdefaultencoding(<span style="color:#f1fa8c">&#39;utf-8&#39;</span>)
+</code></pre></div><h5 id="plistbuddy">PlistBuddy</h5>
+<p>PlistBuddy是Mac自带的专门解析plist的小工具</p>
+<ul>
+<li>
+<p>打印plist</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/usr/libexec/PlistBuddy -c <span style="color:#f1fa8c">&#34;print&#34;</span> info.plist
+</code></pre></div></li>
+<li>
+<p>添加字段</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/usr/libexec/PlistBuddy -c <span style="color:#f1fa8c">&#39;Add :Version string 1.0&#39;</span> info.plist
+</code></pre></div><h1 id="先添加key值">先添加key值</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/usr/libexec/PlistBuddy -c <span style="color:#f1fa8c">&#39;Add :Application array&#39;</span> info.plist
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#6272a4"># 添加value值</span>
+yans67deMacBook-Pro:needfiles huangyg$ /usr/libexec/PlistBuddy -c <span style="color:#f1fa8c">&#39;Add :Application: string app1&#39;</span> info.plist
+yans67deMacBook-Pro:needfiles huangyg$ /usr/libexec/PlistBuddy -c <span style="color:#f1fa8c">&#39;Add :Application: string app2&#39;</span> info.plist
+yans67deMacBook-Pro:needfiles huangyg$ /usr/libexec/PlistBuddy -c <span style="color:#f1fa8c">&#39;Add :Application: string app3&#39;</span> info.plist
+</code></pre></div></li>
+<li>
+<p>删除</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/usr/libexec/PlistBuddy -c <span style="color:#f1fa8c">&#39;Delete :Version&#39;</span> info.plist
+</code></pre></div></li>
+<li>
+<p>修改</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">/usr/libexec/PlistBuddy -c <span style="color:#f1fa8c">&#39;Set :Application:1 string &#34;thi is app1&#34;&#39;</span> info.plist
+</code></pre></div></li>
+<li>
+<p>合并</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#6272a4"># 将A.plist 合并到 B.plist中</span>
+/usr/libexec/PlistBuddy -c <span style="color:#f1fa8c">&#39;Merge A.plist&#39;</span>  B.plist
+</code></pre></div></li>
+</ul>
+<p>参考：
+链接：https://www.jianshu.com/p/2167f755c47e</p>
 
 
                 
@@ -270,13 +284,13 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/post/ios%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8Baop%E5%AE%9E%E8%B7%B5/" data-toggle="tooltip" data-placement="top" title="iOS面向切面编程AOP实践">&larr;
+                        <a href="/post/uicollectionview-reloaddata-crash%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-toggle="tooltip" data-placement="top" title="UICollectionView reloadData Crash 解决方案">&larr;
                             Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/post/mac-update-ruby-error/" data-toggle="tooltip" data-placement="top" title="Mac更新Ruby报错">Next
+                        <a href="/post/opensumi/" data-toggle="tooltip" data-placement="top" title="阿里重磅开源！首款开源 IDE 研发框架 OpenSumi">Next
                             Post &rarr;</a>
                     </li>
                     

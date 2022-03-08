@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
+	<meta name="generator" content="Hugo 0.89.4" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,9 +16,9 @@
     
 
     
-    <meta name="title" content="解决MacOS 10.12破解软件崩溃" />
-    <meta property="og:title" content="解决MacOS 10.12破解软件崩溃" />
-    <meta property="twitter:title" content="解决MacOS 10.12破解软件崩溃" />
+    <meta name="title" content="" />
+    <meta property="og:title" content="" />
+    <meta property="twitter:title" content="" />
     
 
     
@@ -34,9 +35,9 @@
     <meta name="keyword"  content="张勇, Xtcel, xtcel, , 张勇的网络日志, 赵化冰的博客, XTCEL Blog, 博客, 个人网站, 互联网, Web, 移动端开发, iOS, Android, Flutter, Electron, Tauri, Rust, 微服务,">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>解决MacOS 10.12破解软件崩溃-张勇的博客 | XTCEL Blog</title>
+    <title>XTCEL Blog-张勇的博客 | XTCEL Blog</title>
 
-    <link rel="canonical" href="/post/%E8%A7%A3%E5%86%B3macos10.12%E7%A0%B4%E8%A7%A3%E8%BD%AF%E4%BB%B6%E5%B4%A9%E6%BA%83/">
+    <link rel="canonical" href="/">
 
     
     
@@ -158,53 +159,14 @@
 
 
 
-
-<style type="text/css">
-    header.intro-header {
-        background-image: url('https://qn.xtcel.com/bg/home-bg-ocean.jpg')
-    }
-</style>
-
-<header class="intro-header" >
-
+<header class="intro-header" style="background-image: url('https://qn.xtcel.com/bg/home-bg-ocean.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                        <a class="tag" href="/tags/mac" title="Mac">
-                            Mac
-                        </a>
-                        
-                        <a class="tag" href="/tags/macos10.12" title="macOS10.12">
-                            macOS10.12
-                        </a>
-                        
-                        <a class="tag" href="/tags/%E5%B4%A9%E6%BA%83" title="崩溃">
-                            崩溃
-                        </a>
-                        
-                        <a class="tag" href="/tags/%E7%A0%B4%E8%A7%A3%E8%BD%AF%E4%BB%B6" title="破解软件">
-                            破解软件
-                        </a>
-                        
-                    </div>
-                    <h1>解决MacOS 10.12破解软件崩溃</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        
-                            Posted by 
-                            
-                                     &#34;xtcel&#34;
-                             
-                            on 
-                            Monday, October 17, 2016
-                            
-                            
-                            
-                            
-                    </span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>XTCEL Blog </h1>
+                    
+		    <span class="subheading">关注技术，热爱设计</span>
                 </div>
             </div>
         </div>
@@ -213,223 +175,181 @@
 
 
 
-
-<article>
-    <div class="container">
-        <div class="row">
-
-            
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-                
-                <p>不少用户安装macOS 10.12后，安装网上下载的破解软件，打开后竟然出现程序文件被损坏，要求删除应用的提示，看到这个提示大家本能的理解应该是网上下载的第三方程序出问题，文件被损坏，其实这是苹果阻止用户安装破解软件的一项策略，防止苹果盗版软件的盛行。</p>
-<p>
-  <img src="https://s2.loli.net/2022/03/05/CV9cDNAIa3ktziZ.png" alt="APP打不开">
-
-</p>
-<p>用户可能已经发现，在新版的&quot;安全性与隐私&quot;中已找不到&quot;任何来源&quot;选项，意思是用户只能从AppStore下载或者安装已认证的开发者的程序，从其他网站下载的程序大部分是已经被破解修改重新打包的APP，这些APP的开发者是不受认证的。那么怎么打开任何来源?接来下我就给大家详细讲解.非常简单!</p>
-<p>
-  <img src="https://s2.loli.net/2022/03/05/8pbsGzq1h5lPXE7.png" alt="">
-
-</p>
-<h4 id="打开终端">打开终端</h4>
-<p>打开终端,如下图:</p>
-<p>
-  <img src="https://s2.loli.net/2022/03/05/gik7Dlu1sqOnWU2.jpg" alt="">
-
-</p>
-<h4 id="输出命令">输出命令</h4>
-<p>然后输入以下命令:</p>
-<pre tabindex="0"><code>sudo spctl --master-disable
-</code></pre><p>如下图:
-
-  <img src="https://s2.loli.net/2022/03/05/19rOibWLRPD6GCq.png" alt="">
-
-</p>
-<p>输入后回车，sudo命令需要输入电脑的密码，将你的登录密码输入认证就可以了。</p>
-<h4 id="成功啦">成功啦</h4>
-<p>然后再重新打开“安全性与隐私”,已经出现并选中&quot;任何来源&quot;了。</p>
-<p>
-  <img src="https://s2.loli.net/2022/03/05/prX9ztn5QdENluV.png" alt="">
-
-</p>
-<p>再次打开你的APP，已经不会再出现文件损坏的提示。</p>
-<p>
-  <img src="https://s2.loli.net/2022/03/05/wYFUjHq4mg8NBLS.png" alt="">
-
-</p>
-<p>APP正常运行，终于可以继续愉快的玩耍了。继续coding&hellip;.</p>
-
-
-                
-
-                <hr>
-                <ul class="pager">
-                    
-                    <li class="previous">
-                        <a href="/post/ios%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8Baop%E5%AE%9E%E8%B7%B5/" data-toggle="tooltip" data-placement="top" title="iOS面向切面编程AOP实践">&larr;
-                            Previous Post</a>
-                    </li>
-                    
-                    
-                    <li class="next">
-                        <a href="/post/mac-update-ruby-error/" data-toggle="tooltip" data-placement="top" title="Mac更新Ruby报错">Next
-                            Post &rarr;</a>
-                    </li>
-                    
-                </ul>
-                
-<script src="https://giscus.app/client.js"
-        data-repo="xtcel/xtcel.github.io"
-        data-repo-id="MDEwOlJlcG9zaXRvcnkxMTcyNTM1MjE"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOBv0lkc4CN8jv"
-        data-mapping="pathname"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-theme="light"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
-</script>
-
-
-            </div>
-
-            
-            
-            <div class="
-                col-lg-2 col-lg-offset-0
-                visible-lg-block
-                sidebar-container
-                catalog-container">
-                <div class="side-catalog">
-                    <hr class="hidden-sm hidden-xs">
-                    <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
-                    </h5>
-                    <ul class="catalog-body"></ul>
-                </div>
-            </div>
+  
+<div class="container">
+    <div class="row">
+        
+        
+   	    <div class="
+            col-lg-8 col-lg-offset-1
+            col-md-8 col-md-offset-1
+            col-sm-12
+            col-xs-12
+            post-container
+        ">
             
 
-            
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/centos" title="centos">
-                            centos
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/ios" title="ios">
-                            ios
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/mac" title="mac">
-                            mac
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/%E5%B4%A9%E6%BA%83" title="崩溃">
-                            崩溃
-                        </a>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <a href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE" title="防火墙配置">
-                            防火墙配置
-                        </a>
-                        
-                        
-                        
-                        
-                    </div>
-                </section>
-                
-
-                
-                
-            </div>
+<div class="post-preview">
+    <a href="https://xtcel.github.io/top/archive/">
+        <h2 class="post-title">
+            Posts Archive
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            Archive of historical posts.
+        
         </div>
-    </div>
-</article>
+    </a>
+    <p class="post-meta">
+    
+        Posted byXTCEL Blog  Monday, January 1, 0001
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+
+            
+
+
+<ul class="pager">
+    
+    <li class="previous">
+        <a href="/page/4/">&larr; Newer Posts</a>
+    </li>
+    
+    
+</ul>
+
+
+       	</div>
+        
+
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+    
+    <section>
+        <hr class="hidden-sm hidden-xs">
+        <h5>FEATURED TAGS</h5>
+        <div class="tags">
+            
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/centos" title="centos">
+                        centos
+                    </a>
+               
+            
+               
+            
+               
+                    <a href="/tags/ios" title="ios">
+                        ios
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/mac" title="mac">
+                        mac
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/%E5%B4%A9%E6%BA%83" title="崩溃">
+                        崩溃
+                    </a>
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+            
+               
+                    <a href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE" title="防火墙配置">
+                        防火墙配置
+                    </a>
+               
+            
+               
+            
+        </div>
+    </section>
+    
+
+    
+	
+    
+    
+
+    
+    
+</div>
+
+	</div>
+</div>
+
 
 
 
@@ -441,7 +361,7 @@
                 <ul class="list-inline text-center">
                    
                    <li>
-                       <a href='' rel="alternate" type="application/rss+xml" title="XTCEL Blog" >
+                       <a href='/index.xml' rel="alternate" type="application/rss+xml" title="XTCEL Blog" >
                            <span class="fa-stack fa-lg">
                                <i class="fas fa-circle fa-stack-2x"></i>
                                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>

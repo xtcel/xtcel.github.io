@@ -6,7 +6,16 @@
     <description>Recent content in Mac on XTCEL Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 Dec 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://xtcel.github.io/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Mar 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://xtcel.github.io/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mac 上使用 Python 修改 .Plist 文件</title>
+      <link>https://xtcel.github.io/post/mac%E4%B8%8A%E4%BD%BF%E7%94%A8python%E4%BF%AE%E6%94%B9.plist%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/post/mac%E4%B8%8A%E4%BD%BF%E7%94%A8python%E4%BF%AE%E6%94%B9.plist%E6%96%87%E4%BB%B6/</guid>
+      <description>起因 今天遇到一个需要批量处理写入.Plist文件的需要，一开始想直接手动写入，考虑的内容比较多，手写估计要1个小时，于是想是不是可以用程序员</description>
+    </item>
+    
     <item>
       <title>Mac更新Ruby报错</title>
       <link>https://xtcel.github.io/post/mac-update-ruby-error/</link>
