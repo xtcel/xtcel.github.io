@@ -216,13 +216,13 @@
                 <p>iOS控件传任意类型值</p>
 <h4 id="一般方法">一般方法</h4>
 <p>一般可以用打tag的方法来传值:</p>
-<pre tabindex="0"><code class="language-oc" data-lang="oc">[button addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
-[button setTag:10];
-</code></pre><p>然而这样只能传递基础类型，通常需要传递Model或者数组。明显使用tag不能实现我们的需求。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objectivec" data-lang="objectivec">[button <span style="color:#8be9fd;font-style:italic">addTarget</span>:<span style="color:#8be9fd;font-style:italic">self</span> <span style="color:#8be9fd;font-style:italic">action</span>:<span style="color:#ff79c6">@selector</span>(<span style="color:#8be9fd;font-style:italic">action</span>:) <span style="color:#8be9fd;font-style:italic">forControlEvents</span>:UIControlEventTouchUpInside];
+[button <span style="color:#8be9fd;font-style:italic">setTag</span>:<span style="color:#bd93f9">10</span>];
+</code></pre></div><p>然而这样只能传递基础类型，通常需要传递Model或者数组。明显使用tag不能实现我们的需求。</p>
 <p>是否有更好的方案呢？</p>
 <p>有的，利用object-c的runtime特性。</p>
 <h4 id="runtime">runtime</h4>
-<pre tabindex="0"><code>#import&lt;objc/runtime.h&gt;
+<pre tabindex="0"><code class="language-obj" data-lang="obj">#import&lt;objc/runtime.h&gt;
 
 [button addTarget:self action:@selector(buttonClickedEvent:) forControlEvents:UIControlEventTouchUpInside];
 

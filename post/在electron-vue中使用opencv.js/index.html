@@ -228,36 +228,36 @@
 <h4 id="入门">入门</h4>
 <p>在网上有很多关于Opencv的Python和C++的教程，而Opencv.js的却非常的少，主要是看官方的教程。我Google以后发现网上有一些Node.js使用Opencv的库，他们主要是使用<a href="https://github.com/justadudewhohacks/opencv4nodejs#readme">opencv4nodejs</a>开源库，按照教程我在Electron-vue环境下安装了很多次都没有成功。opencv4nodejs使用cmake编译OpenCV，并且自己创建了一套基于Opencv的node.js接口，在使用上方便不少，无奈安装不了最后只能放弃，如果有读者有安装成功的可以留言交流。因为官方教程是直接在Web中直接使用<!-- raw HTML omitted -->引入Opencv.js的，按道理Electron-vue中应该也可以以同样的方式引入。
 一开始我尝试了使用ES6 Import引入js文件方式加入Opencv.js，但是一直没有成功，这种方式引入可以更方便的在Vue文件中直接使用Opencv。之后我便尝试使用直接在HTML中插入<!-- raw HTML omitted -->方式引入Opencv，大概如下代码所示：</p>
-<pre tabindex="0"><code>let script = document.createElement('script');
-        script.setAttribute('async', '');
-        script.setAttribute('type', 'text/javascript');
-        script.addEventListener('load', () =&gt; {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#8be9fd;font-style:italic">let</span> script <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createElement(<span style="color:#f1fa8c">&#39;script&#39;</span>);
+        script.setAttribute(<span style="color:#f1fa8c">&#39;async&#39;</span>, <span style="color:#f1fa8c">&#39;&#39;</span>);
+        script.setAttribute(<span style="color:#f1fa8c">&#39;type&#39;</span>, <span style="color:#f1fa8c">&#39;text/javascript&#39;</span>);
+        script.addEventListener(<span style="color:#f1fa8c">&#39;load&#39;</span>, () =&gt; {
             console.log(cv.getBuildInformation());
             onloadCallback();
         });
-        script.addEventListener('error', () =&gt; {
-            self.printError('Failed to load ' + OPENCV_URL);
+        script.addEventListener(<span style="color:#f1fa8c">&#39;error&#39;</span>, () =&gt; {
+            self.printError(<span style="color:#f1fa8c">&#39;Failed to load &#39;</span> <span style="color:#ff79c6">+</span> OPENCV_URL);
         });
-        script.src = OPENCV_URL;
-        let node = document.getElementsByTagName('script')[0];
+        script.src <span style="color:#ff79c6">=</span> OPENCV_URL;
+        <span style="color:#8be9fd;font-style:italic">let</span> node <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.getElementsByTagName(<span style="color:#f1fa8c">&#39;script&#39;</span>)[<span style="color:#bd93f9">0</span>];
         node.parentNode.insertBefore(script, node);
-</code></pre><p>然而还是失败了，一直报错，提示找不到opencv。经过调试发现root上的cv为空，说明没有cv对象没有赋值到root上。然后我看了Opencv.js的源码，发现如下代码：</p>
-<pre tabindex="0"><code>if (typeof define === 'function' &amp;&amp; define.amd) {
-    // AMD. Register as an anonymous module.
-    define(function () {
-      return (root.cv = factory());
+</code></pre></div><p>然而还是失败了，一直报错，提示找不到opencv。经过调试发现root上的cv为空，说明没有cv对象没有赋值到root上。然后我看了Opencv.js的源码，发现如下代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> define <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;function&#39;</span> <span style="color:#ff79c6">&amp;&amp;</span> define.amd) {
+    <span style="color:#6272a4">// AMD. Register as an anonymous module.
+</span><span style="color:#6272a4"></span>    define(<span style="color:#8be9fd;font-style:italic">function</span> () {
+      <span style="color:#ff79c6">return</span> (root.cv <span style="color:#ff79c6">=</span> factory());
     });
-  } else if (typeof module === 'object' &amp;&amp; module.exports) {
-    // Node. Does not work with strict CommonJS, but
-    // only CommonJS-like environments that support module.exports,
-    // like Node.
-    module.exports = factory();
-  } else {
-    // Browser globals
-    root.cv = factory();
+  } <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">typeof</span> module <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;object&#39;</span> <span style="color:#ff79c6">&amp;&amp;</span> module.exports) {
+    <span style="color:#6272a4">// Node. Does not work with strict CommonJS, but
+</span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// only CommonJS-like environments that support module.exports,
+</span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// like Node.
+</span><span style="color:#6272a4"></span>    module.exports <span style="color:#ff79c6">=</span> factory();
+  } <span style="color:#ff79c6">else</span> {
+    <span style="color:#6272a4">// Browser globals
+</span><span style="color:#6272a4"></span>    root.cv <span style="color:#ff79c6">=</span> factory();
   }
-</code></pre><p>根据代码我想应该是上面的判断出了问题，于是在上面的每个判断条件下加了log,果然不出所料，这里的代码使用了module.exports = factory()方式，仔细思考一下，其实也没有问题，本来Electron就是基于Node环境的，所以opencv.js认为现在在nodejs环境下，需要使用CommonJS的格式export。所以只要让他不进入这个else if就可以了，所以我果断手动创建了一个bug.把判断条件改成了：</p>
-<pre tabindex="0"><code>else if (typeof module === 'objectBUG' &amp;&amp; module.exports)
+</code></pre></div><p>根据代码我想应该是上面的判断出了问题，于是在上面的每个判断条件下加了log,果然不出所料，这里的代码使用了module.exports = factory()方式，仔细思考一下，其实也没有问题，本来Electron就是基于Node环境的，所以opencv.js认为现在在nodejs环境下，需要使用CommonJS的格式export。所以只要让他不进入这个else if就可以了，所以我果断手动创建了一个bug.把判断条件改成了：</p>
+<pre tabindex="0"><code class="language-obj" data-lang="obj">else if (typeof module === 'objectBUG' &amp;&amp; module.exports)
 </code></pre><p>以毒攻读，以创建Bug的方式解决这个&quot;Bug&quot;。
 幸运的是，这次成功了！终于看到终端上把Opencv信息打印出来。</p>
 <h4 id="还有一些小问题">还有一些小问题</h4>
