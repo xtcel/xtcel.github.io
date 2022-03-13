@@ -188,7 +188,7 @@
                         
                             Posted by 
                             
-                                     &#34;&#34;
+                                     &#34;xtcel&#34;
                              
                             on 
                             Saturday, June 29, 2019
@@ -218,38 +218,37 @@
 
                 
                 <h5 id="安装依赖">安装依赖</h5>
-<pre tabindex="0"><code>yum install openssh-server openssl
-
-</code></pre><p>备份</p>
-<pre tabindex="0"><code>cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
-</code></pre><h5 id="修改ssh配置文件">修改ssh配置文件</h5>
-<pre tabindex="0"><code>vi /etc/ssh/sshd_config
-</code></pre><p>文末添加</p>
-<pre tabindex="0"><code>Subsystem sftp internal-sftp
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">yum install openssh-server openssl
+</code></pre></div><p>备份</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+</code></pre></div><h5 id="修改ssh配置文件">修改ssh配置文件</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">vi /etc/ssh/sshd_config
+</code></pre></div><p>文末添加</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Subsystem sftp internal-sftp
 Match Group sftpgroup
 Match User xgwxsftp
 X11Forwarding no
 AllowTcpForwarding no
 ChrootDirectory /data/www/
 ForceCommand internal-sftp
-</code></pre><h5 id="配置目录权限">配置目录权限</h5>
-<pre tabindex="0"><code>mkdir -p /sftp/sftpuser //-p 表示parents，即递归创建目录
+</code></pre></div><h5 id="配置目录权限">配置目录权限</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mkdir -p /sftp/sftpuser //-p 表示parents，即递归创建目录
 usermod -d /sftp/sftpuser sftpuser // -d 表示修改用户home目录
 
 // 设置Chroot目录权限
 chown root:sftpgroup /sftp/sftpuser
-chmod 755 /sftp/sftpuser
+chmod <span style="color:#bd93f9">755</span> /sftp/sftpuser
 
 // 设置sftp用户可以操作的目录
 mkdir /sftp/sftpuser/upload
 chown sftpuser:sftpgroup /sftp/sftpuser/upload
-chmod 755 /sftp/sftpuser/upload
-</code></pre><h5 id="重启ssh服务">重启ssh服务</h5>
+chmod <span style="color:#bd93f9">755</span> /sftp/sftpuser/upload
+</code></pre></div><h5 id="重启ssh服务">重启ssh服务</h5>
 <p>centos7</p>
-<pre tabindex="0"><code>systemctl restart sshd.service
-</code></pre><p>centos6</p>
-<pre tabindex="0"><code>service sshd restart
-</code></pre><h5 id="参考">参考</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemctl restart sshd.service
+</code></pre></div><p>centos6</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">service sshd restart
+</code></pre></div><h5 id="参考">参考</h5>
 <p>SFTP服务配置以及命令/代码操作
 <a href="https://blog.csdn.net/zhichao_qzc/article/details/80301994">https://blog.csdn.net/zhichao_qzc/article/details/80301994</a></p>
 <p>CentOS6.9下sftp配置和scp用法
