@@ -15,15 +15,15 @@
     
 
     
-    <meta name="title" content="Ubuntu 配置Nginx&#43;PHP&#43;MySql" />
-    <meta property="og:title" content="Ubuntu 配置Nginx&#43;PHP&#43;MySql" />
-    <meta property="twitter:title" content="Ubuntu 配置Nginx&#43;PHP&#43;MySql" />
+    <meta name="title" content="CentOS 配置 sftp" />
+    <meta property="og:title" content="CentOS 配置 sftp" />
+    <meta property="twitter:title" content="CentOS 配置 sftp" />
     
 
     
-    <meta name="description" content="Ubuntu 配置Nginx&#43;PHP&#43;MySql">
-    <meta property="og:description" content="Ubuntu 配置Nginx&#43;PHP&#43;MySql" />
-    <meta property="twitter:description" content="Ubuntu 配置Nginx&#43;PHP&#43;MySql" />
+    <meta name="description" content="张勇, 程序员, 开源爱好者，生活探险家 | 这里是 程序员张同学 的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="张勇, 程序员, 开源爱好者，生活探险家 | 这里是 程序员张同学 的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="张勇, 程序员, 开源爱好者，生活探险家 | 这里是 程序员张同学 的博客，与你一起发现更大的世界。" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="张勇, Xtcel, xtcel, , 张勇的网络日志, 赵化冰的博客, XTCEL Blog, 博客, 个人网站, 互联网, Web, 移动端开发, iOS, Android, Flutter, Electron, Tauri, Rust, 微服务,">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Ubuntu 配置Nginx&#43;PHP&#43;MySql-张勇的博客 | XTCEL Blog</title>
+    <title>CentOS 配置 sftp-张勇的博客 | XTCEL Blog</title>
 
-    <link rel="canonical" href="/post/ubuntu%E9%85%8D%E7%BD%AEnginx&#43;php&#43;mysql/">
+    <link rel="canonical" href="/post/centos%E9%85%8D%E7%BD%AEsftp/">
 
     
     
@@ -173,37 +173,25 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/mysql" title="MySql">
-                            MySql
+                        <a class="tag" href="/tags/centos" title="centos">
+                            centos
                         </a>
                         
-                        <a class="tag" href="/tags/nginx" title="Nginx">
-                            Nginx
-                        </a>
-                        
-                        <a class="tag" href="/tags/php" title="PHP">
-                            PHP
-                        </a>
-                        
-                        <a class="tag" href="/tags/ubuntu" title="Ubuntu">
-                            Ubuntu
-                        </a>
-                        
-                        <a class="tag" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8" title="服务器">
-                            服务器
+                        <a class="tag" href="/tags/%E9%85%8D%E7%BD%AEsftp" title="配置sftp">
+                            配置sftp
                         </a>
                         
                     </div>
-                    <h1>Ubuntu 配置Nginx&#43;PHP&#43;MySql</h1>
-                    <h2 class="subheading">Ubuntu 配置Nginx&#43;PHP&#43;MySql</h2>
+                    <h1>CentOS 配置 sftp</h1>
+                    <h2 class="subheading"></h2>
                     <span class="meta">
                         
                             Posted by 
                             
-                                     &#34;xtcel&#34;
+                                     &#34;&#34;
                              
                             on 
-                            Wednesday, August 12, 2015
+                            Saturday, June 29, 2019
                             
                             
                             
@@ -229,95 +217,47 @@
                 post-container">
 
                 
-                <p>Nginx 是一个轻量级，以占用系统资源少，运行效率而成为web服务器的后起之秀，国内现在很多大型网站都以使用nginx.
-PHP亦是当前最火爆的web服务器脚本语言。
-MySql速度快，体积小，作为服务器后台数据库非常受欢迎。
-这个组合可以非常适合作为一些小型网站、博客的服务器。</p>
-<p>
-  <img src="http://o88f31ee3.bkt.clouddn.com/blog/image/jpg/Server.jpg" alt="img">
+                <h5 id="安装依赖">安装依赖</h5>
+<pre tabindex="0"><code>yum install openssh-server openssl
 
-</p>
-<h4 id="一使用官方ppa安装-nginx-最新版本">一、使用官方PPA安装 Nginx 最新版本</h4>
-<ol>
-<li>
-<p>安装python-software-properties，要先安python-software-properties 才能使用 add-apt-repository，我一开始就直接使 用sudo add-apt-repository ppa:nginx/stable命令，导致了add-apt-repository:command not found错误。</p>
-<pre tabindex="0"><code>apt-get install python-software-properties
-</code></pre></li>
-<li>
-<p>添加该源的keyserver，而add-apt-repository 就可以把添加源可添加apt-key的工作全部作了</p>
-<pre tabindex="0"><code>sudo add-apt-repository ppa:nginx/stable
-</code></pre></li>
-<li>
-<p>更新</p>
-<pre tabindex="0"><code>sudo apt-get update
-</code></pre></li>
-<li>
-<p>安装Nginx:</p>
-<pre tabindex="0"><code>sudo apt-get install nginx
-</code></pre></li>
-<li>
-<p>Test Nginx：
-启动 Nginx：</p>
-<pre tabindex="0"><code>sudo /etc/init.d/nginx start
-</code></pre><p>浏览器浏览运行情况输入：<a href="http://localhost/">http://localhost</a> ;如果现实”Welcome to nginx!”，表明你的 Nginx 服务器安装成功! 关闭 Nginx：</p>
-<pre tabindex="0"><code>sudo /etc/init.d/nginx stop;
-</code></pre></li>
-</ol>
-<h4 id="二配置安装php和mysql">二、配置安装PHP和MYSQL</h4>
-<ol>
-<li>
-<p>安装php和MySQL:</p>
-<pre tabindex="0"><code>sudo apt-get install php5-cli php5-cgi mysql-server php5-mysql
-</code></pre></li>
-</ol>
-<h4 id="三安装配置spawn-fcgi配置nginx配置nginx和spawn-fcgi配合运行">三、安装配置spawn-fcgi、配置Nginx，配置Nginx和spawn-fcgi配合运行</h4>
-<ol>
-<li>
-<p>/usr/bin/spawn-fcgi这个文件来管理 FastCgi，它原属于lighttpd这个包里面，但 9.10 后，spawn-fcgi 被分离出来单独成包：</p>
-<pre tabindex="0"><code>sudo apt-get install spawn-fcgi
-</code></pre></li>
-<li>
-<p>在/etc/nginx/fastcgi_params 文件最后,加入一行</p>
-<pre tabindex="0"><code>sudo vi /etc/nginx/fastcgi_params
-</code></pre><p>加入此行:</p>
-<pre tabindex="0"><code>fastcgi_param   SCRIPT_FILENAME   $document_root$fastcgi_script_name;
-</code></pre></li>
-<li>
-<p>另外需要在PHP-CGI的配置文件(Ubuntu 上此配置文件位于/etc/php5/cgi/php.ini)中,找到cgi.fix_pathinfo选项(找不到直接添加一行就可以了),修改为:</p>
-<pre tabindex="0"><code>cgi.fix_pathinfo=1;
-</code></pre><p>这样php-cgi方能正常使用SCRIPT_FILENAME这个变量.</p>
-</li>
-<li>
-<p>修改nginx的配置文件：/etc/nginx/sites-available/default 修改主机名：</p>
-<pre tabindex="0"><code>server_name localhost;
-</code></pre><p>修改index的一行修改为：</p>
-<pre tabindex="0"><code>index index.php index.html index.htm;
-</code></pre></li>
-<li>
-<p>去除local .~ php 注释，改为如下</p>
-<pre tabindex="0"><code>location ~ .php$ {
-fastcgi_pass 127.0.0.1:9000;
-fastcgi_index index.php;
-fastcgi_param SCRIPT_FILENAME /var/www/nginx-default$fastcgi_script_name;
-include /etc/nginx/fastcgi_params; #包含fastcgi的参数文件地址
-</code></pre></li>
-<li>
-<p>开始fast_cgi进程</p>
-<pre tabindex="0"><code>sudo /usr/bin/spawn-fcgi -a 127.0.0.1 -p 9000 -C 5 -u www-data -g www-data -f /usr/bin/php5-cgi -P /var/run/fastcgi-php.pid
-</code></pre></li>
-<li>
-<p>为了让php-cgi开机自启动：
-cd /etc/init.d cp nginx php-cgi vim php-cgi
-提示：如果打开php文件出现:No input file specified请检查php.ini的配置中 cgi.fix_pathinfo=1</p>
-</li>
-</ol>
-<h4 id="四测试是否配置好php">四、测试是否配置好PHP</h4>
-<p>然后运行rcconf设置php-cgi为开机自启动,创建测试phpinfo：</p>
-<pre tabindex="0"><code>sudo vi /var/www/html/index.php
-</code></pre><p>插入如下内容</p>
-<pre tabindex="0"><code>&lt;? php phpinfo(); ?&gt;
-</code></pre><p>打开http://localhost/;
-如果配置正确，可以看到PHP版本信息页面</p>
+</code></pre><p>备份</p>
+<pre tabindex="0"><code>cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+</code></pre><h5 id="修改ssh配置文件">修改ssh配置文件</h5>
+<pre tabindex="0"><code>vi /etc/ssh/sshd_config
+</code></pre><p>文末添加</p>
+<pre tabindex="0"><code>Subsystem sftp internal-sftp
+Match Group sftpgroup
+Match User xgwxsftp
+X11Forwarding no
+AllowTcpForwarding no
+ChrootDirectory /data/www/
+ForceCommand internal-sftp
+</code></pre><h5 id="配置目录权限">配置目录权限</h5>
+<pre tabindex="0"><code>mkdir -p /sftp/sftpuser //-p 表示parents，即递归创建目录
+usermod -d /sftp/sftpuser sftpuser // -d 表示修改用户home目录
+
+// 设置Chroot目录权限
+chown root:sftpgroup /sftp/sftpuser
+chmod 755 /sftp/sftpuser
+
+// 设置sftp用户可以操作的目录
+mkdir /sftp/sftpuser/upload
+chown sftpuser:sftpgroup /sftp/sftpuser/upload
+chmod 755 /sftp/sftpuser/upload
+</code></pre><h5 id="重启ssh服务">重启ssh服务</h5>
+<p>centos7</p>
+<pre tabindex="0"><code>systemctl restart sshd.service
+</code></pre><p>centos6</p>
+<pre tabindex="0"><code>service sshd restart
+</code></pre><h5 id="参考">参考</h5>
+<p>SFTP服务配置以及命令/代码操作
+<a href="https://blog.csdn.net/zhichao_qzc/article/details/80301994">https://blog.csdn.net/zhichao_qzc/article/details/80301994</a></p>
+<p>CentOS6.9下sftp配置和scp用法
+<a href="https://blog.csdn.net/Pipcie/article/details/83545603">https://blog.csdn.net/Pipcie/article/details/83545603</a></p>
+<p>CentOS 6配置SFTP
+<a href="https://www.jianshu.com/p/5025d6de4e09">https://www.jianshu.com/p/5025d6de4e09</a></p>
+<p>给sftp创建新用户、默认打开和限制在某个目录
+<a href="https://www.cnblogs.com/xjnotxj/p/6912471.html">https://www.cnblogs.com/xjnotxj/p/6912471.html</a></p>
 
 
                 
@@ -326,13 +266,13 @@ cd /etc/init.d cp nginx php-cgi vim php-cgi
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/post/uicollectionview%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B8%83%E5%B1%80-%E5%AE%9E%E7%8E%B0%E8%AF%BE%E8%A1%A8%E5%B8%83%E5%B1%80/" data-toggle="tooltip" data-placement="top" title="UICollectionView自定义布局--实现课表布局">&larr;
+                        <a href="/post/%E5%9C%A8electron-vue%E4%B8%AD%E4%BD%BF%E7%94%A8opencv.js/" data-toggle="tooltip" data-placement="top" title="在 Electron 中使用 OpenCV.js">&larr;
                             Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/post/2015%E8%8B%B9%E6%9E%9C%E5%8F%91%E5%B8%83%E4%BC%9A%E9%82%80%E8%AF%B7%E5%87%BD%E8%A7%A3%E8%AF%BB/" data-toggle="tooltip" data-placement="top" title="2015苹果发布会邀请函解读">Next
+                        <a href="/post/opensumi/" data-toggle="tooltip" data-placement="top" title="阿里重磅开源！首款开源 IDE 研发框架 OpenSumi">Next
                             Post &rarr;</a>
                     </li>
                     

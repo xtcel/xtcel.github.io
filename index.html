@@ -213,6 +213,29 @@
 <hr>
 
 <div class="post-preview">
+    <a href="https://xtcel.github.io/post/centos%E9%85%8D%E7%BD%AEsftp/">
+        <h2 class="post-title">
+            CentOS 配置 sftp
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            安装依赖 yum install openssh-server openssl 备份 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak 修改ssh配置文件 vi /etc/ssh/sshd_config 文末添加 Subsystem sftp internal-sftp Match Group sftpgroup Match User xgwxsftp X11Forwarding no AllowTcpForwarding no ChrootDirectory /data/www/ ForceCommand internal-sftp 配置目录权限 mkdir -p /sftp/sftpuser //-p 表示parents，即递归创建
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by     &#34;&#34;  Saturday, June 29, 2019
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="https://xtcel.github.io/post/%E5%9C%A8electron-vue%E4%B8%AD%E4%BD%BF%E7%94%A8opencv.js/">
         <h2 class="post-title">
             在 Electron 中使用 OpenCV.js
@@ -273,29 +296,6 @@
     <p class="post-meta">
     
         Posted byXTCEL Blog  Monday, May 14, 2018
-        
-        
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://xtcel.github.io/post/rxswift0-mvvm%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5inputs-outputs/">
-        <h2 class="post-title">
-            RxSwift MVVM最佳实践：Inputs - Outputs（翻译）
-        </h2>
-	
-        <div class="post-content-preview">
-	
-            当谈到iOS架构时，MVVM是个很好的选择。它不仅提供了比MVC更好的可测试性，而且与VIPER等同类架构相比，这个架构是轻量级的。尽管如此
-       
-        </div>
-    </a>
-    <p class="post-meta">
-    
-        Posted by     &#34;&#34;  Thursday, May 10, 2018
         
         
     
@@ -416,6 +416,8 @@
                     <a href="/tags/%E5%B4%A9%E6%BA%83" title="崩溃">
                         崩溃
                     </a>
+               
+            
                
             
                

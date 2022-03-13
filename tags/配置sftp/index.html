@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="锯齿" />
-    <meta property="og:title" content="锯齿" />
-    <meta property="twitter:title" content="锯齿" />
+    <meta name="title" content="配置sftp" />
+    <meta property="og:title" content="配置sftp" />
+    <meta property="twitter:title" content="配置sftp" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="张勇, Xtcel, xtcel, , 张勇的网络日志, 赵化冰的博客, XTCEL Blog, 博客, 个人网站, 互联网, Web, 移动端开发, iOS, Android, Flutter, Electron, Tauri, Rust, 微服务,">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>锯齿-张勇的博客 | XTCEL Blog</title>
+    <title>配置sftp-张勇的博客 | XTCEL Blog</title>
 
-    <link rel="canonical" href="/tags/%E9%94%AF%E9%BD%BF/">
+    <link rel="canonical" href="/tags/%E9%85%8D%E7%BD%AEsftp/">
 
     
     
@@ -189,20 +189,20 @@
             
 
 <div class="post-preview">
-    <a href="https://xtcel.github.io/post/ios%E6%97%8B%E8%BD%AC%E5%9B%BE%E7%89%87%E9%94%AF%E9%BD%BF%E9%97%AE%E9%A2%98/">
+    <a href="https://xtcel.github.io/post/centos%E9%85%8D%E7%BD%AEsftp/">
         <h2 class="post-title">
-            iOS旋转图片锯齿问题
+            CentOS 配置 sftp
         </h2>
 	
         <div class="post-content-preview">
 	
-            缘由 最近做项目，需要对一个小滑块进行旋转，滑块上面有一张图片。发现滑块只要一滑动就出现锯齿，后来发现是由于旋转变形时，图片仿射的多造成的。于
+            安装依赖 yum install openssh-server openssl 备份 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak 修改ssh配置文件 vi /etc/ssh/sshd_config 文末添加 Subsystem sftp internal-sftp Match Group sftpgroup Match User xgwxsftp X11Forwarding no AllowTcpForwarding no ChrootDirectory /data/www/ ForceCommand internal-sftp 配置目录权限 mkdir -p /sftp/sftpuser //-p 表示parents，即递归创建
        
         </div>
     </a>
     <p class="post-meta">
     
-        Posted byxtcel  Friday, July 31, 2015
+        Posted by     &#34;&#34;  Saturday, June 29, 2019
         
         
     
@@ -369,7 +369,7 @@
                 <ul class="list-inline text-center">
                    
                    <li>
-                       <a href='/tags/%E9%94%AF%E9%BD%BF/index.xml' rel="alternate" type="application/rss+xml" title="XTCEL Blog" >
+                       <a href='/tags/%E9%85%8D%E7%BD%AEsftp/index.xml' rel="alternate" type="application/rss+xml" title="XTCEL Blog" >
                            <span class="fa-stack fa-lg">
                                <i class="fas fa-circle fa-stack-2x"></i>
                                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>

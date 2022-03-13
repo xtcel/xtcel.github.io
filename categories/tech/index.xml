@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>CentOS 配置 sftp</title>
+      <link>https://xtcel.github.io/post/centos%E9%85%8D%E7%BD%AEsftp/</link>
+      <pubDate>Sat, 29 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/post/centos%E9%85%8D%E7%BD%AEsftp/</guid>
+      <description>安装依赖 yum install openssh-server openssl 备份 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak 修改ssh配置文件 vi /etc/ssh/sshd_config 文末添加 Subsystem sftp internal-sftp Match Group sftpgroup Match User xgwxsftp X11Forwarding no AllowTcpForwarding no ChrootDirectory /data/www/ ForceCommand internal-sftp 配置目录权限 mkdir -p /sftp/sftpuser //-p 表示parents，即递归创建</description>
+    </item>
+    
+    <item>
       <title>在 Electron 中使用 OpenCV.js</title>
       <link>https://xtcel.github.io/post/%E5%9C%A8electron-vue%E4%B8%AD%E4%BD%BF%E7%94%A8opencv.js/</link>
       <pubDate>Fri, 15 Mar 2019 00:00:00 +0000</pubDate>
