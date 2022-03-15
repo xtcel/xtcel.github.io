@@ -223,49 +223,49 @@
                 
                 <h4 id="报错-webpack-referenceerror-process-is-not-defined">报错 Webpack ReferenceError: process is not defined</h4>
 <p>最新重新安装electron-vue后，使用yarn安装项目，结果一直报错。起初以为是yarn的问题，使用npm安装也发现同样的问题。Google后发现应该是node版本问题，将node降为Node11可以正常工作。</p>
-<pre tabindex="0"><code>ERROR in Template execution failed: ReferenceError: process is not defined
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ERROR in Template execution failed: ReferenceError: process is not defined
   
   ERROR in   ReferenceError: process is not defined
     
-    - index.ejs:11 eval
-      [.]/[html-webpack-plugin]/lib/loader.js!./src/index.ejs:11:2
+    - index.ejs:11 <span style="color:#8be9fd;font-style:italic">eval</span>
+      <span style="color:#ff79c6">[</span>.<span style="color:#ff79c6">]</span>/<span style="color:#ff79c6">[</span>html-webpack-plugin<span style="color:#ff79c6">]</span>/lib/loader.js!./src/index.ejs:11:2
     
     - index.ejs:16 module.exports
-      [.]/[html-webpack-plugin]/lib/loader.js!./src/index.ejs:16:3
+      <span style="color:#ff79c6">[</span>.<span style="color:#ff79c6">]</span>/<span style="color:#ff79c6">[</span>html-webpack-plugin<span style="color:#ff79c6">]</span>/lib/loader.js!./src/index.ejs:16:3
     
     - index.js:284 
-      [electron-test]/[html-webpack-plugin]/index.js:284:18
+      <span style="color:#ff79c6">[</span>electron-test<span style="color:#ff79c6">]</span>/<span style="color:#ff79c6">[</span>html-webpack-plugin<span style="color:#ff79c6">]</span>/index.js:284:18
     
     - runMicrotasks
     
     - task_queues.js:93 processTicksAndRejections
       internal/process/task_queues.js:93:5
-</code></pre><h4 id="解决方案">解决方案</h4>
+</code></pre></div><h4 id="解决方案">解决方案</h4>
 <p>修改.electron-vue/webpack.web.config.js和.electron-vue/webpack.renderer.config.js文件的HtmlWebpackPlugin，添加templateParameters，修改后如下：</p>
-<pre tabindex="0"><code>new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.resolve(__dirname, '../src/index.ejs'),
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">new</span> HtmlWebpackPlugin({
+      filename<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;index.html&#39;</span>,
+      template<span style="color:#ff79c6">:</span> path.resolve(__dirname, <span style="color:#f1fa8c">&#39;../src/index.ejs&#39;</span>),
       templateParameters(compilation, assets, options) {
-        return {
-          compilation: compilation,
-          webpack: compilation.getStats().toJson(),
-          webpackConfig: compilation.options,
-          htmlWebpackPlugin: {
-            files: assets,
-            options: options
+        <span style="color:#ff79c6">return</span> {
+          compilation<span style="color:#ff79c6">:</span> compilation,
+          webpack<span style="color:#ff79c6">:</span> compilation.getStats().toJson(),
+          webpackConfig<span style="color:#ff79c6">:</span> compilation.options,
+          htmlWebpackPlugin<span style="color:#ff79c6">:</span> {
+            files<span style="color:#ff79c6">:</span> assets,
+            options<span style="color:#ff79c6">:</span> options
           },
           process,
         };
       },
-      minify: {
-        collapseWhitespace: true,
-        removeAttributeQuotes: true,
-        removeComments: true
+      minify<span style="color:#ff79c6">:</span> {
+        collapseWhitespace<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+        removeAttributeQuotes<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+        removeComments<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>
       },
-      nodeModules: false
+      nodeModules<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>
     }),
     
-</code></pre><h4 id="参考">参考</h4>
+</code></pre></div><h4 id="参考">参考</h4>
 <p><a href="https://github.com/SimulatedGREG/electron-vue/issues/871">https://github.com/SimulatedGREG/electron-vue/issues/871</a></p>
 
 
