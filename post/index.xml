@@ -17,6 +17,24 @@
     </item>
     
     <item>
+      <title>Laravel php artisan migrate错误</title>
+      <link>https://xtcel.github.io/post/laravel-php-artisan-migrate%E9%94%99%E8%AF%AF/</link>
+      <pubDate>Thu, 15 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/post/laravel-php-artisan-migrate%E9%94%99%E8%AF%AF/</guid>
+      <description>错误 运行php artisan migrate出现如下错误： In Connection.php line 664: SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes (SQL: alter table `admin_users` add unique `admin_users_email_unique`(`email`)) In Connection.php line 458: SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length</description>
+    </item>
+    
+    <item>
+      <title>Electron菜单栏和导航栏隐藏</title>
+      <link>https://xtcel.github.io/post/electron%E8%8F%9C%E5%8D%95%E6%A0%8F%E5%92%8C%E5%AF%BC%E8%88%AA%E6%A0%8F%E9%9A%90%E8%97%8F/</link>
+      <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/post/electron%E8%8F%9C%E5%8D%95%E6%A0%8F%E5%92%8C%E5%AF%BC%E8%88%AA%E6%A0%8F%E9%9A%90%E8%97%8F/</guid>
+      <description>隐藏菜单栏 在main/index.js中修改ready事件回调 app.on(&#39;ready&#39;, () =&amp;gt; { createWindow() // 隐藏菜单栏 const { Menu } = require(&#39;electron&#39;); Menu.setApplicationMenu(null); // hide menu for Mac if (process.platform !== &#39;darwin&#39;) { app.dock.hide(); } }) 隐藏导航栏 在初始</description>
+    </item>
+    
+    <item>
       <title>Electron-vue报错Webpack ReferenceError:process is not defined</title>
       <link>https://xtcel.github.io/post/electron-vue_error_webpack_referenceerrorprocess_is_not_defined/</link>
       <pubDate>Thu, 04 Jul 2019 00:00:00 +0000</pubDate>

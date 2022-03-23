@@ -6,7 +6,16 @@
     <description>Recent content in Electron on XTCEL Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://xtcel.github.io/tags/electron/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://xtcel.github.io/tags/electron/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Electron菜单栏和导航栏隐藏</title>
+      <link>https://xtcel.github.io/post/electron%E8%8F%9C%E5%8D%95%E6%A0%8F%E5%92%8C%E5%AF%BC%E8%88%AA%E6%A0%8F%E9%9A%90%E8%97%8F/</link>
+      <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://xtcel.github.io/post/electron%E8%8F%9C%E5%8D%95%E6%A0%8F%E5%92%8C%E5%AF%BC%E8%88%AA%E6%A0%8F%E9%9A%90%E8%97%8F/</guid>
+      <description>隐藏菜单栏 在main/index.js中修改ready事件回调 app.on(&#39;ready&#39;, () =&amp;gt; { createWindow() // 隐藏菜单栏 const { Menu } = require(&#39;electron&#39;); Menu.setApplicationMenu(null); // hide menu for Mac if (process.platform !== &#39;darwin&#39;) { app.dock.hide(); } }) 隐藏导航栏 在初始</description>
+    </item>
+    
     <item>
       <title>Electron-vue报错Webpack ReferenceError:process is not defined</title>
       <link>https://xtcel.github.io/post/electron-vue_error_webpack_referenceerrorprocess_is_not_defined/</link>
