@@ -190,6 +190,29 @@
             
 
 <div class="post-preview">
+    <a href="https://xtcel.github.io/post/centos%E9%85%8D%E7%BD%AEsftp/">
+        <h2 class="post-title">
+            CentOS 配置 sftp
+        </h2>
+	
+        <div class="post-content-preview">
+	
+            安装依赖 yum install openssh-server openssl 备份 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak 修改ssh配置文件 vi /etc/ssh/sshd_config 文末添加 Subsystem sftp internal-sftp Match Group sftpgroup Match User xgwxsftp X11Forwarding no AllowTcpForwarding no ChrootDirectory /data/www/ ForceCommand internal-sftp 配置目录权限 mkdir -p /sftp/sftpuser //-p 表示parents，即递归创建
+       
+        </div>
+    </a>
+    <p class="post-meta">
+    
+        Posted by     &#34;xtcel&#34;  Saturday, June 29, 2019
+        
+        
+    
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="https://xtcel.github.io/post/%E5%9C%A8electron-vue%E4%B8%AD%E4%BD%BF%E7%94%A8opencv.js/">
         <h2 class="post-title">
             在 Electron 中使用 OpenCV.js
@@ -281,29 +304,6 @@
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="https://xtcel.github.io/post/%E5%BF%98%E8%AE%B0develper%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E7%AD%94%E6%A1%88%E6%9B%B4%E6%96%B0appleid%E7%BB%91%E5%AE%9A%E6%89%8B%E6%9C%BA/">
-        <h2 class="post-title">
-            忘记Develper安全问题答案，更新Apple Id绑定手机
-        </h2>
-	
-        <div class="post-content-preview">
-	
-            最近登录ITC,发现苹果又更新协议了，正常这个时候都是想直接到developer.apple.com直接点同意协议就👌，不过这次打开deve
-       
-        </div>
-    </a>
-    <p class="post-meta">
-    
-        Posted byXTCEL Blog  Tuesday, April 24, 2018
-        
-        
-    
-    </p>
-
-</div>
-<hr>
-
 
             
 
@@ -354,6 +354,10 @@
                     <a href="/tags/electron" title="electron">
                         electron
                     </a>
+               
+            
+               
+            
                
             
                

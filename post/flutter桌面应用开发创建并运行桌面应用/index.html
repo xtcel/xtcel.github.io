@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XTCEL Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://xtcel.github.io/https://qn.xtcel.com/bg/home-bg-ocean.jpg">
+    <meta property="twitter:image" content="https://xtcel.github.io/https://qn.xtcel.com/bg/home-bg-ocean.jpg" />
+    
+
+    
+    <meta name="title" content="Flutter桌面应用开发：创建并运行桌面应用" />
+    <meta property="og:title" content="Flutter桌面应用开发：创建并运行桌面应用" />
+    <meta property="twitter:title" content="Flutter桌面应用开发：创建并运行桌面应用" />
+    
+
+    
+    <meta name="description" content="张勇, 程序员, 开源爱好者，生活探险家 | 这里是 程序员张同学 的博客，与你一起发现更大的世界。">
+    <meta property="og:description" content="张勇, 程序员, 开源爱好者，生活探险家 | 这里是 程序员张同学 的博客，与你一起发现更大的世界。" />
+    <meta property="twitter:description" content="张勇, 程序员, 开源爱好者，生活探险家 | 这里是 程序员张同学 的博客，与你一起发现更大的世界。" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="张勇, Xtcel, xtcel, , 张勇的网络日志, 赵化冰的博客, XTCEL Blog, 博客, 个人网站, 互联网, Web, 移动端开发, iOS, Android, Flutter, Electron, Tauri, Rust, 微服务,">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Flutter桌面应用开发：创建并运行桌面应用-张勇的博客 | XTCEL Blog</title>
+
+    <link rel="canonical" href="/post/flutter%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%88%9B%E5%BB%BA%E5%B9%B6%E8%BF%90%E8%A1%8C%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">XTCEL Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                        <li>
+                            <a href="/categories/ios">ios</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/tech">tech</a>
+                        </li>
+                        
+                    
+                    
+		    
+                        <li><a href="/top/books/">BOOKS</a></li>
+                    
+                        <li><a href="/top/archive/">ARCHIVE</a></li>
+                    
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+		    <li>
+                        <a href="/search"><i class="fa fa-search"></i></a>
+		    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://qn.xtcel.com/bg/home-bg-ocean.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/flutter" title="Flutter">
+                            Flutter
+                        </a>
+                        
+                        <a class="tag" href="/tags/flutter%E6%A1%8C%E9%9D%A2" title="Flutter桌面">
+                            Flutter桌面
+                        </a>
+                        
+                    </div>
+                    <h1>Flutter桌面应用开发：创建并运行桌面应用</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                xtcel
+                             
+                            on 
+                            Sunday, December 1, 2019
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <p>在Google I/O 2019上Flutter 团队宣布推出最新稳定版: Flutter 1.9。这是 Flutter 迄今为止最大的一次版本更新，Flutter 1.9 引入的新特性与更新涵盖范围广泛，包括 macOS Catalina 和 iOS 13 支持、工具支持优化、多项 Dart 语言新特性以及全新的 Material widget。在本文中，我们将详细介绍在桌面环境中运行一个新的或现有的Flutter应用程序的过程。</p>
+<p>让我们开始吧!
+在我的尝试中，我发现有多种方法可以做到这一点，所以为了简单起见，我们选择最简单的一种。</p>
+<h3 id="搭建环境">搭建环境</h3>
+<p>先安装Flutter SDK
+<a href="https://flutter.dev/docs/get-started/install">https://flutter.dev/docs/get-started/install</a></p>
+<p>让Flutter运行在PC上，必须切换到主分支(master channel)的最新版本，启动终端并运行以下命令:</p>
+<pre tabindex="0"><code>flutter channel master
+flutter upgrade
+</code></pre><p>现在运行如下命令：</p>
+<pre tabindex="0"><code>flutter doctor 
+</code></pre><p>我们可以看到类似这样的输出(根据当前环境输入有所不同)：
+
+  <img src="https://s2.loli.net/2022/03/24/bnYCMd36POKLmQo.png" alt="image.png">
+
+</p>
+<p>现在，我们可以看到设备列表没有显示已连接设备。这是因为默认情况下，Flutter没有启用桌面支持。根据你的系统运行以下命令打开支持：</p>
+<pre tabindex="0"><code>flutter config --enable-linux-desktop 
+flutter config --enable-macos-desktop
+flutter config --enable-windows-desktop
+</code></pre><p>请注意，这将为当前终端会话设置环境变量，因此我们将在该终端中执行所有后续步骤。</p>
+<p>现在，让我们运行以下命令以确保系统显示。</p>
+<pre tabindex="0"><code>flutter devices
+</code></pre><p>在输出中，我现在看到Mac已经连接并且可用。</p>
+<h4 id="创建应用">创建应用</h4>
+<p>用于桌面的Flutter仍然是一个实验特性，这意味着不支持使用&quot;Flutter create&quot;命令创建新的桌面应用程序。因此，惟一的选择是手动下载Demo文件。值得庆幸的是，谷歌的Flutter队已经为我们做到了这一点。</p>
+<p>在终端运行这个:</p>
+<pre tabindex="0"><code>git clone https://github.com/google/flutter-desktop-embedding.git
+cd flutter-desktop-embedding
+</code></pre><p>示例目录是一个Flutter应用程序，它包含所有必要的构建脚本，在MacOS、Windows和Linux上运行Flutter都需要这些脚本。如果我们打开示例文件夹的VS代码，我们将能够看到这样的东西:
+
+  <img src="https://s2.loli.net/2022/03/24/qLip3CXbNPzWVcu.png" alt="image.png">
+
+</p>
+<p>接下来要做的就是从示例文件夹中运行以下命令，获取项目依赖:</p>
+<pre tabindex="0"><code>flutter packages get
+</code></pre><p>在我们继续运行我们的应用程序之前，还有最后一步。桌面系统特定的构建工具在默认情况下是不下载的，即使我们第一次运行应用程序时，Flutter也会下载相同的构建工具，但我想确保我们事先就有了它。下载相同的，运行:</p>
+<pre tabindex="0"><code>flutter precache --macos
+</code></pre><p>根据你的你的操作系统带上参数 &ndash;linux,&ndash;macos或 &ndash;windows。</p>
+<p>恭喜你!我们现在已经准备好以桌面应用程序的形式运行我们的Flutter应用程序。</p>
+<p>让我们先运行这个应用程序，然后再看一下示例代码。在终端窗口执行:</p>
+<pre tabindex="0"><code>flutter run
+</code></pre><p>终端输出应该是这样的:
+
+  <img src="https://s2.loli.net/2022/03/24/y8jreqVB5igIQRm.png" alt="image.png">
+
+</p>
+<p>在MacOS上运行起来是这样:
+
+  <img src="https://s2.loli.net/2022/03/24/Jeo1x8iwvGUhzBq.png" alt="image.png">
+
+</p>
+<p>嗯！看起来非常简洁美观，终于可以在Linux上运行和MacOS一样漂亮的界面了！</p>
+<p>翻译自：<a href="https://medium.com/flutter-community/flutter-for-desktop-create-and-run-a-desktop-application-ebeb1604f1e0">https://medium.com/flutter-community/flutter-for-desktop-create-and-run-a-desktop-application-ebeb1604f1e0</a></p>
+
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/laravel-php-artisan-migrate%E9%94%99%E8%AF%AF/" data-toggle="tooltip" data-placement="top" title="Laravel php artisan migrate错误">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/opensumi/" data-toggle="tooltip" data-placement="top" title="阿里重磅开源！首款开源 IDE 研发框架 OpenSumi">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+<script src="https://giscus.app/client.js"
+        data-repo="xtcel/xtcel.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxMTcyNTM1MjE"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOBv0lkc4CN8jv"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/centos" title="centos">
+                            centos
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/electron" title="electron">
+                            electron
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ios" title="ios">
+                            ios
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mac" title="mac">
+                            mac
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E5%B4%A9%E6%BA%83" title="崩溃">
+                            崩溃
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE" title="防火墙配置">
+                            防火墙配置
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   
+                   <li>
+                       <a href='' rel="alternate" type="application/rss+xml" title="XTCEL Blog" >
+                           <span class="fa-stack fa-lg">
+                               <i class="fas fa-circle fa-stack-2x"></i>
+                               <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                           </span>
+                       </a>
+                   </li>
+                   
+                    
+                    <li>
+                        <a href="mailto:xtcelzhangyong@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    <li>
+                        <a target="_blank" href="/your%20wechat%20qr%20code%20image">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xtcel">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/yourlinkedinid">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://stackoverflow.com/users/yourstackoverflowid">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+            
+                    
+                    
+                    
+            
+            
+            
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XTCEL Blog 2022
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+</body>
+</html>
