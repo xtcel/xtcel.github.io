@@ -13,7 +13,7 @@
       <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>https://xtcel.github.io/post/electron%E8%8F%9C%E5%8D%95%E6%A0%8F%E5%92%8C%E5%AF%BC%E8%88%AA%E6%A0%8F%E9%9A%90%E8%97%8F/</guid>
-      <description>隐藏菜单栏 在main/index.js中修改ready事件回调 app.on(&#39;ready&#39;, () =&amp;gt; { createWindow() // 隐藏菜单栏 const { Menu } = require(&#39;electron&#39;); Menu.setApplicationMenu(null); // hide menu for Mac if (process.platform !== &#39;darwin&#39;) { app.dock.hide(); } }) 隐藏导航栏 在初始</description>
+      <description>隐藏菜单栏 在main/index.js中修改ready事件回调 app.on(&amp;#39;ready&amp;#39;, () =&amp;gt; { createWindow() // 隐藏菜单栏 const { Menu } = require(&amp;#39;electron&amp;#39;); Menu.setApplicationMenu(null); // hide menu for Mac if (process.platform !== &amp;#39;darwin&amp;#39;) { app.dock.hide(); } }) 隐藏导航栏 在初始</description>
     </item>
     
   </channel>

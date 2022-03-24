@@ -224,20 +224,20 @@
                 <h4 id="报错-webpack-referenceerror-process-is-not-defined">报错 Webpack ReferenceError: process is not defined</h4>
 <p>最新重新安装electron-vue后，使用yarn安装项目，结果一直报错。起初以为是yarn的问题，使用npm安装也发现同样的问题。Google后发现应该是node版本问题，将node降为Node11可以正常工作。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ERROR in Template execution failed: ReferenceError: process is not defined
-  
+
   ERROR in   ReferenceError: process is not defined
-    
+
     - index.ejs:11 <span style="color:#8be9fd;font-style:italic">eval</span>
       <span style="color:#ff79c6">[</span>.<span style="color:#ff79c6">]</span>/<span style="color:#ff79c6">[</span>html-webpack-plugin<span style="color:#ff79c6">]</span>/lib/loader.js!./src/index.ejs:11:2
-    
+
     - index.ejs:16 module.exports
       <span style="color:#ff79c6">[</span>.<span style="color:#ff79c6">]</span>/<span style="color:#ff79c6">[</span>html-webpack-plugin<span style="color:#ff79c6">]</span>/lib/loader.js!./src/index.ejs:16:3
-    
+
     - index.js:284 
       <span style="color:#ff79c6">[</span>electron-test<span style="color:#ff79c6">]</span>/<span style="color:#ff79c6">[</span>html-webpack-plugin<span style="color:#ff79c6">]</span>/index.js:284:18
-    
+
     - runMicrotasks
-    
+
     - task_queues.js:93 processTicksAndRejections
       internal/process/task_queues.js:93:5
 </code></pre></div><h4 id="解决方案">解决方案</h4>
@@ -264,7 +264,6 @@
       },
       nodeModules<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>
     }),
-    
 </code></pre></div><h4 id="参考">参考</h4>
 <p><a href="https://github.com/SimulatedGREG/electron-vue/issues/871">https://github.com/SimulatedGREG/electron-vue/issues/871</a></p>
 
@@ -351,6 +350,12 @@
                         </a>
                         
                         
+                        
+                        
+                        
+                        <a href="/tags/flutter" title="flutter">
+                            flutter
+                        </a>
                         
                         
                         

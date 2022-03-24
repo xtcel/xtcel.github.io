@@ -224,49 +224,49 @@
 <p>先安装Flutter SDK
 <a href="https://flutter.dev/docs/get-started/install">https://flutter.dev/docs/get-started/install</a></p>
 <p>让Flutter运行在PC上，必须切换到主分支(master channel)的最新版本，启动终端并运行以下命令:</p>
-<pre tabindex="0"><code>flutter channel master
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">flutter channel master
 flutter upgrade
-</code></pre><p>现在运行如下命令：</p>
-<pre tabindex="0"><code>flutter doctor 
-</code></pre><p>我们可以看到类似这样的输出(根据当前环境输入有所不同)：
+</code></pre></div><p>现在运行如下命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">flutter doctor 
+</code></pre></div><p>我们可以看到类似这样的输出(根据当前环境输入有所不同)：
 
-  <img src="https://s2.loli.net/2022/03/24/bnYCMd36POKLmQo.png" alt="image.png">
+  <img src="https://upload-images.jianshu.io/upload_images/453533-4b1a35906cb42ef0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png">
 
 </p>
 <p>现在，我们可以看到设备列表没有显示已连接设备。这是因为默认情况下，Flutter没有启用桌面支持。根据你的系统运行以下命令打开支持：</p>
-<pre tabindex="0"><code>flutter config --enable-linux-desktop 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">flutter config --enable-linux-desktop 
 flutter config --enable-macos-desktop
 flutter config --enable-windows-desktop
-</code></pre><p>请注意，这将为当前终端会话设置环境变量，因此我们将在该终端中执行所有后续步骤。</p>
+</code></pre></div><p>请注意，这将为当前终端会话设置环境变量，因此我们将在该终端中执行所有后续步骤。</p>
 <p>现在，让我们运行以下命令以确保系统显示。</p>
-<pre tabindex="0"><code>flutter devices
-</code></pre><p>在输出中，我现在看到Mac已经连接并且可用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">flutter devices
+</code></pre></div><p>在输出中，我现在看到Mac已经连接并且可用。</p>
 <h4 id="创建应用">创建应用</h4>
 <p>用于桌面的Flutter仍然是一个实验特性，这意味着不支持使用&quot;Flutter create&quot;命令创建新的桌面应用程序。因此，惟一的选择是手动下载Demo文件。值得庆幸的是，谷歌的Flutter队已经为我们做到了这一点。</p>
 <p>在终端运行这个:</p>
-<pre tabindex="0"><code>git clone https://github.com/google/flutter-desktop-embedding.git
-cd flutter-desktop-embedding
-</code></pre><p>示例目录是一个Flutter应用程序，它包含所有必要的构建脚本，在MacOS、Windows和Linux上运行Flutter都需要这些脚本。如果我们打开示例文件夹的VS代码，我们将能够看到这样的东西:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">git clone https://github.com/google/flutter-desktop-embedding.git
+<span style="color:#8be9fd;font-style:italic">cd</span> flutter-desktop-embedding
+</code></pre></div><p>示例目录是一个Flutter应用程序，它包含所有必要的构建脚本，在MacOS、Windows和Linux上运行Flutter都需要这些脚本。如果我们打开示例文件夹的VS代码，我们将能够看到这样的东西:
 
-  <img src="https://s2.loli.net/2022/03/24/qLip3CXbNPzWVcu.png" alt="image.png">
+  <img src="https://upload-images.jianshu.io/upload_images/453533-6523ad9e71ba6fe6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png">
 
 </p>
 <p>接下来要做的就是从示例文件夹中运行以下命令，获取项目依赖:</p>
-<pre tabindex="0"><code>flutter packages get
-</code></pre><p>在我们继续运行我们的应用程序之前，还有最后一步。桌面系统特定的构建工具在默认情况下是不下载的，即使我们第一次运行应用程序时，Flutter也会下载相同的构建工具，但我想确保我们事先就有了它。下载相同的，运行:</p>
-<pre tabindex="0"><code>flutter precache --macos
-</code></pre><p>根据你的你的操作系统带上参数 &ndash;linux,&ndash;macos或 &ndash;windows。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">flutter packages get
+</code></pre></div><p>在我们继续运行我们的应用程序之前，还有最后一步。桌面系统特定的构建工具在默认情况下是不下载的，即使我们第一次运行应用程序时，Flutter也会下载相同的构建工具，但我想确保我们事先就有了它。下载相同的，运行:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">flutter precache --macos
+</code></pre></div><p>根据你的你的操作系统带上参数 &ndash;linux,&ndash;macos或 &ndash;windows。</p>
 <p>恭喜你!我们现在已经准备好以桌面应用程序的形式运行我们的Flutter应用程序。</p>
 <p>让我们先运行这个应用程序，然后再看一下示例代码。在终端窗口执行:</p>
-<pre tabindex="0"><code>flutter run
-</code></pre><p>终端输出应该是这样的:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">flutter run
+</code></pre></div><p>终端输出应该是这样的:
 
-  <img src="https://s2.loli.net/2022/03/24/y8jreqVB5igIQRm.png" alt="image.png">
+  <img src="https://upload-images.jianshu.io/upload_images/453533-e80a5474f7b336ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png">
 
 </p>
 <p>在MacOS上运行起来是这样:
 
-  <img src="https://s2.loli.net/2022/03/24/Jeo1x8iwvGUhzBq.png" alt="image.png">
+  <img src="https://upload-images.jianshu.io/upload_images/453533-a3646ee92ea148e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png">
 
 </p>
 <p>嗯！看起来非常简洁美观，终于可以在Linux上运行和MacOS一样漂亮的界面了！</p>
@@ -285,7 +285,7 @@ cd flutter-desktop-embedding
                     
                     
                     <li class="next">
-                        <a href="/post/opensumi/" data-toggle="tooltip" data-placement="top" title="阿里重磅开源！首款开源 IDE 研发框架 OpenSumi">Next
+                        <a href="/post/flutter-text%E5%BA%95%E9%83%A8%E9%BB%84%E8%89%B2%E5%8F%8C%E5%88%92%E7%BA%BF/" data-toggle="tooltip" data-placement="top" title="Flutter Text底部黄色双划线">Next
                             Post &rarr;</a>
                     </li>
                     
@@ -355,6 +355,12 @@ cd flutter-desktop-embedding
                         </a>
                         
                         
+                        
+                        
+                        
+                        <a href="/tags/flutter" title="flutter">
+                            flutter
+                        </a>
                         
                         
                         

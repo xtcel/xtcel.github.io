@@ -219,40 +219,40 @@
                 
                 <h3 id="隐藏菜单栏">隐藏菜单栏</h3>
 <p>在main/index.js中修改ready事件回调</p>
-<pre tabindex="0"><code>app.on('ready', () =&gt; {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">app.on(<span style="color:#f1fa8c">&#39;ready&#39;</span>, () =&gt; {
   createWindow()
-  // 隐藏菜单栏
-  const { Menu } = require('electron');
-  Menu.setApplicationMenu(null);
-  // hide menu for Mac 
-  if (process.platform !== 'darwin') {
+  <span style="color:#6272a4">// 隐藏菜单栏
+</span><span style="color:#6272a4"></span>  <span style="color:#ff79c6">const</span> { Menu } <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;electron&#39;</span>);
+  Menu.setApplicationMenu(<span style="color:#ff79c6">null</span>);
+  <span style="color:#6272a4">// hide menu for Mac 
+</span><span style="color:#6272a4"></span>  <span style="color:#ff79c6">if</span> (process.platform <span style="color:#ff79c6">!==</span> <span style="color:#f1fa8c">&#39;darwin&#39;</span>) {
     app.dock.hide();
   }
 })
-</code></pre><h3 id="隐藏导航栏">隐藏导航栏</h3>
+</code></pre></div><h3 id="隐藏导航栏">隐藏导航栏</h3>
 <p>在初始化BrowserWindow的配置参数中，</p>
 <p>windows添加</p>
-<pre tabindex="0"><code>frame: false
-</code></pre><p>Mac添加</p>
-<pre tabindex="0"><code>titleBarStyle: 'hidden'
-</code></pre><p>修改后如下：</p>
-<pre tabindex="0"><code>mainWindow = new BrowserWindow({
-    height: 641,
-    width: 1007,
-    useContentSize: true,
-    titleBarStyle: 'hidden',
-    frame: false,
-    webPreferences: {
-      webSecurity: false
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">frame<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>
+</code></pre></div><p>Mac添加</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">titleBarStyle<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;hidden&#39;</span>
+</code></pre></div><p>修改后如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">mainWindow <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> BrowserWindow({
+    height<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">641</span>,
+    width<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1007</span>,
+    useContentSize<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+    titleBarStyle<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;hidden&#39;</span>,
+    frame<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
+    webPreferences<span style="color:#ff79c6">:</span> {
+      webSecurity<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>
     }
   })
-</code></pre><h3 id="导航栏支持拖拽">导航栏支持拖拽</h3>
+</code></pre></div><h3 id="导航栏支持拖拽">导航栏支持拖拽</h3>
 <p>使用自定义导航栏，需添加导航栏拖拽功能，否则无法移动窗口。
 导航栏添加拖拽功能需添加如下CSS样式：</p>
-<pre tabindex="0"><code>-webkit-app-region: drag
-</code></pre><p>如果导航栏内还有其他控件（如按钮等），需取消此控件的拖拽功能，否则控件点击事件等无效。</p>
-<pre tabindex="0"><code>-webkit-app-region: no-drag;
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">-</span>webkit<span style="color:#ff79c6">-</span>app<span style="color:#ff79c6">-</span>region<span style="color:#ff79c6">:</span> drag
+</code></pre></div><p>如果导航栏内还有其他控件（如按钮等），需取消此控件的拖拽功能，否则控件点击事件等无效。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ff79c6">-</span>webkit<span style="color:#ff79c6">-</span>app<span style="color:#ff79c6">-</span>region<span style="color:#ff79c6">:</span> no<span style="color:#ff79c6">-</span>drag;
+</code></pre></div>
 
                 
 
@@ -336,6 +336,12 @@
                         </a>
                         
                         
+                        
+                        
+                        
+                        <a href="/tags/flutter" title="flutter">
+                            flutter
+                        </a>
                         
                         
                         
