@@ -5,7 +5,7 @@
     <link>https://xtcel.github.io/tags/opencv/</link>
     <description>Recent content in OpenCV on XTCEL Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <lastBuildDate>Fri, 15 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://xtcel.github.io/tags/opencv/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在 Electron 中使用 OpenCV.js</title>

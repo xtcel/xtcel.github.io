@@ -5,7 +5,7 @@
     <link>https://xtcel.github.io/tags/centos/</link>
     <description>Recent content in CentOS on XTCEL Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <lastBuildDate>Sat, 29 Jun 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://xtcel.github.io/tags/centos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CentOS 配置 sftp</title>
